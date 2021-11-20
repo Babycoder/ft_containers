@@ -1,7 +1,6 @@
-#include <iostream>
-
+#include "vector/vector.hpp"
 int 	main()
 {
-	std::cout << "Hello ft_containers" << std::endl;
+	ft::vector bobiz;
 	return 0;
 }
