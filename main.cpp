@@ -2,6 +2,8 @@
 
 int 	main()
 {
-	ft::vector bobiz;
-	return 0;
+	ft::vector	bobiz;
+
+	bobiz.msg();
+	return			0;
 }
