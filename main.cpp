@@ -1,9 +1,18 @@
-#include "vector/vector.hpp"
+//#include "vector/vector.hpp"
+#include "iterators.hpp"
+#include <iostream>
+//#include <iterator>
+
 
 int 	main()
 {
-	ft::vector	bobiz;
+	int data[] = {10, 2, 3, 4, 5};
+	ft::iterator<int> it(data);
+	it++;
+	ft::iterator<int> it2;
+	it2 = it;
+	std::cout << *it2 << std::endl;
 
-	bobiz.msg();
-	return			0;
+
+	return 0;
 }
