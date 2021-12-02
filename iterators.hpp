@@ -48,9 +48,6 @@ namespace ft {
 			bool operator<=(const iterator& rhs)const { return this->_ptr <= rhs._ptr; };
 			bool operator>(const iterator& rhs)const { return this->_ptr > rhs._ptr; };
 			bool operator>=(const iterator& rhs)const { return this->_ptr >= rhs._ptr; };
-
-
-
 		private :
 			pointer _ptr;
 
