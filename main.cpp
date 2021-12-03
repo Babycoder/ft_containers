@@ -18,14 +18,14 @@ int 	main()
 
 	ft::vector<int> test;
 	std::cout << test.empty() << std::endl;
-	test.push_back(90);
+	test.push_back(9);
 	test.push_back(9);
 	test.push_back(9);
 	test.push_back(9);
 	test.push_back(690);
 	test.push_back(6900);
 	test.push_back(690000);
-	test.at(6) = 69;
+	//test.at(6) = 69;
 	//test.clear();
 	std::cout << test.empty() << std::endl;
 	std::cout << test.capacity() << std::endl;
@@ -33,7 +33,7 @@ int 	main()
 	//std::cout << test.max_size() << std::endl;
 	//std::cout << "test[0] = " << test.at(6)<< std::endl;
 	std::cout << "front = " << test.front()<< std::endl;
-	std::cout << "back = " << test.back() << std::endl;
+	std::cout << "back = " << test.back()<< std::endl;
 ;
 	return 0;
 }

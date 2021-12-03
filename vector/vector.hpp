@@ -11,20 +11,21 @@ namespace ft
 		 
 		public	:
 			typedef T value_type;
-			//typedef Allocator allocator_type;
+			typedef Allocator allocator_type;
 			typedef std::size_t size_type;
 			typedef std::ptrdiff_t difference_type;
 			typedef value_type& reference;
 			typedef	const value_type& const_reference;
 			//typedef Allocator::pointer pointer; 
 			//typedef Allocator::const_pointer const_pointer;
-
-			vector(){
-				Allocator aloc;
+			vector (const allocator_type& alloc = allocator_type())
+			{
+				_alloc = alloc;
 				_size = 0;
 				_capacity = 2;
-				_data = aloc.allocate(_capacity);
-			};
+				_data = _alloc.allocate(_capacity);
+				
+			}
 			~vector(){};
 
 			//Element access
@@ -48,6 +49,11 @@ namespace ft
 				return(_data[_size - 1]);
 			}
 
+			T* data()
+			{
+				return _data;
+			}
+
 			//Capacity
 
 			bool empty() const
@@ -66,7 +72,7 @@ namespace ft
 			{
 				return _capacity;
 			}
-			
+
 			// Modifiers
 			void	push_back(const T& value )
 			{
@@ -80,16 +86,16 @@ namespace ft
 
 		void	realloc(size_t newCapacity)
 		{
-			Allocator aloc;
-			//T* newdata = new T[newCapacity];
-			T* newdata = aloc.allocate(newCapacity);
+			//Allocator aloc;
+
+			T* newdata = _alloc.allocate(newCapacity);
 			if (newCapacity < _size)
 				_size = newCapacity;
 
 			for (size_t i = 0; i < _size; i++)
 				newdata[i] = _data[i];
-			//delete [] _data;
-			aloc.deallocate(_data, _capacity);
+
+			_alloc.deallocate(_data, _capacity);
 			_data = newdata;
 			_capacity = newCapacity;
 		}
@@ -98,6 +104,7 @@ namespace ft
 			T* _data;
 			size_t _size;
 			size_t _capacity;
+			allocator_type _alloc;
 
 	 };
 }
