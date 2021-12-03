@@ -39,10 +39,7 @@ namespace ft
 			{
 				return (_data[pos]);
 			}
-			reference front()
-			{
-				return(_data[0]);
-			}
+			reference front(){return(_data[0]);}
 
 			reference back()
 			{

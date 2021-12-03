@@ -39,19 +39,29 @@ namespace ft {
 			iterator&  operator+=(const difference_type n) { _ptr = _ptr + n; return *this; };
 			iterator&  operator-=(const difference_type n) { _ptr = _ptr - n; return *this; };
 
+			reference operator[](difference_type n) const {return *(_ptr + n); }
 
-			bool operator==(const iterator& rhs) const{ return this->_ptr == rhs._ptr; };
+			//bool operator==(const iterator& rhs) const{ return this->_ptr == rhs._ptr; };
+			friend bool operator== (const iterator<T>& lhs,const iterator<T>& rhs);
+			
 			bool operator!=(const iterator& rhs) const{ return this->_ptr != rhs._ptr; };
 
-			reference operator[](difference_type n) const {return *(_ptr + n); }
 			bool operator<(const iterator& rhs)const { return this->_ptr < rhs._ptr; };
 			bool operator<=(const iterator& rhs)const { return this->_ptr <= rhs._ptr; };
 			bool operator>(const iterator& rhs)const { return this->_ptr > rhs._ptr; };
 			bool operator>=(const iterator& rhs)const { return this->_ptr >= rhs._ptr; };
+			
 		private :
 			pointer _ptr;
 
 	};
+
+	template <typename T>
+ 	bool operator== (const iterator<T>& lhs,const iterator<T>& rhs)
+	{
+		return (lhs._ptr == rhs._ptr);
+	}
+
 }
 
 #endif
