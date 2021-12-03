@@ -34,7 +34,7 @@ namespace ft {
 
 			iterator& operator+(const difference_type n) { return  (_ptr + n); };
 			iterator& operator-(const difference_type n) { return  (_ptr - n); };
-			iterator& operator-(iterator& rhs) { return  _ptr = _ptr - rhs.ptr; return *this};
+			iterator& operator-(iterator& rhs) { return  _ptr = _ptr - rhs.ptr;};
 			
 			iterator&  operator+=(const difference_type n) { _ptr = _ptr + n; return *this; };
 			iterator&  operator-=(const difference_type n) { _ptr = _ptr - n; return *this; };
