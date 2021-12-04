@@ -1,7 +1,8 @@
 //#include "vector/vector.hpp"
 #include "iterators.hpp"
-#include <iostream>
 #include "vector/vector.hpp"
+
+#include <iostream>
 #include <vector>
 //#include <iterator>
 
@@ -10,13 +11,15 @@ int 	main()
 {
 	int data[] = {10, 2, 3, 4, 5};
 	ft::iterator<int> it(data);
-	//it++;
+	ft::iterator<int> it2(data);
+
+	it++;
 	//ft::iterator<int> it2(it);
 	//it2 = it;
 	//it += 0;
-	//std::cout << *it << std::endl;
+	std::cout << (it == it2) << std::endl;
 
-	ft::vector<int> test;
+	/*ft::vector<int> test;
 	std::cout << test.empty() << std::endl;
 	test.push_back(9);
 	test.push_back(9);
@@ -33,7 +36,7 @@ int 	main()
 	//std::cout << test.max_size() << std::endl;
 	//std::cout << "test[0] = " << test.at(6)<< std::endl;
 	std::cout << "front = " << test.front()<< std::endl;
-	std::cout << "back = " << test.back()<< std::endl;
+	std::cout << "back = " << test.back()<< std::endl;*/
 ;
 	return 0;
 }

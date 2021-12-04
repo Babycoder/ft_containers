@@ -41,15 +41,14 @@ namespace ft {
 
 			reference operator[](difference_type n) const {return *(_ptr + n); }
 
-			//bool operator==(const iterator& rhs) const{ return this->_ptr == rhs._ptr; };
-			friend bool operator== (const iterator<T>& lhs,const iterator<T>& rhs);
 			
-			bool operator!=(const iterator& rhs) const{ return this->_ptr != rhs._ptr; };
+			friend bool operator== (const iterator<T>& lhs,const iterator<T>& rhs);
+			friend bool operator!= (const iterator<T>& lhs, const iterator<T>& rhs);
+			friend bool operator<(const iterator<T>& lhs,const iterator<T>& rhs);
+			friend bool operator<=(const iterator<T>& lhs,const iterator<T>& rhs);
+			friend bool operator>(const iterator<T>& lhs,const iterator<T>& rhs);
+			friend bool operator>=(const iterator<T>& lhs,const iterator<T>& rhs);
 
-			bool operator<(const iterator& rhs)const { return this->_ptr < rhs._ptr; };
-			bool operator<=(const iterator& rhs)const { return this->_ptr <= rhs._ptr; };
-			bool operator>(const iterator& rhs)const { return this->_ptr > rhs._ptr; };
-			bool operator>=(const iterator& rhs)const { return this->_ptr >= rhs._ptr; };
 			
 		private :
 			pointer _ptr;
@@ -62,6 +61,41 @@ namespace ft {
 		return (lhs._ptr == rhs._ptr);
 	}
 
+	template <typename T>
+  	bool operator!= (const iterator<T>& lhs, const iterator<T>& rhs)
+	{
+		return (lhs._ptr != rhs._ptr);
+  	}
+
+	template <typename T>
+	bool operator<(const iterator<T>& lhs,const iterator<T>& rhs)
+	{
+		return (lhs._ptr < rhs._ptr);
+	}
+
+	template <typename T>
+	bool operator<=(const iterator<T>& lhs,const iterator<T>& rhs)
+	{
+		return (lhs._ptr <= rhs._ptr);
+	}
+
+	template <typename T>
+	bool operator>(const iterator<T>& lhs,const iterator<T>& rhs)
+	{
+		return (lhs._ptr > rhs._ptr);
+	}
+
+	template <typename T>
+	bool operator>=(const iterator<T>& lhs,const iterator<T>& rhs)
+	{
+		return (lhs._ptr >= rhs._ptr);
+	}
+
+	template <typename T>
+	iterator<T> operator+ (typename iterator<T>::difference_type n, const iterator<T>& it)
+	{
+		return(n + it._ptr);
+	}
 }
 
 #endif
