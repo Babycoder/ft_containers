@@ -26,6 +26,7 @@ namespace ft
 				_capacity = 2;
 				_data = _alloc.allocate(_capacity);	
 			}
+		
 			~vector(){};
 
 			//Element access
@@ -33,6 +34,7 @@ namespace ft
 			reference operator[](size_type pos){return(_data[pos]);}
 
 			reference at(size_type pos){return (_data[pos]);}
+			
 			reference front(){return(_data[0]);}
 
 			reference back(){return(_data[_size - 1]);}
@@ -41,14 +43,9 @@ namespace ft
 
 			//Capacity
 			size_type size() const {return _size;}
-			bool empty() const
-			{
-				if (_size == 0)
-					return true;
-				else
-					return false;
-			}
-
+			
+			bool empty() const {return !_size; }
+			
 			size_type capacity() const{return _capacity;}
 
 			// Modifiers
