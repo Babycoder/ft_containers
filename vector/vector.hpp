@@ -41,6 +41,8 @@ namespace ft
 
 			value_type* data(){return _data;}
 
+			
+			
 			//Capacity
 			size_type size() const {return _size;}
 			
@@ -48,6 +50,11 @@ namespace ft
 			
 			size_type capacity() const{return _capacity;}
 
+			
+			
+			
+			
+			
 			// Modifiers
 			void	push_back(const T& value )
 			{
