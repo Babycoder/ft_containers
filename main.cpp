@@ -14,11 +14,11 @@ int 	main()
 	ft::iterator<int> it2(data);
 
 	it++;
-	bool res = (it != it2);
+	bool res = (it == it2);
 	//ft::iterator<int> it2(it);
 	//it2 = it;
 	//it += 0;
-	std::cout << res << std::endl;
+	std::cout << (it == it2) << std::endl;
 
 	/*ft::vector<int> test;
 	std::cout << test.empty() << std::endl;
