@@ -41,9 +41,9 @@ namespace ft {
 			iterator&  operator-=(const difference_type n) { _ptr = _ptr - n; return *this; };
 
 			
+
 			iterator& operator-(iterator& rhs) { return  _ptr = _ptr - rhs.ptr;};
 			reference operator[](difference_type n) const {return *(_ptr + n); }
-
 			template <typename B>
 			friend bool operator== (const iterator<B>& lhs,const iterator<B>& rhs);
 			
@@ -76,6 +76,7 @@ namespace ft {
 	template <typename B>
   	bool operator!= (const iterator<B>& lhs, const iterator<B>& rhs)
 	{
+		
 		return (lhs._ptr != rhs._ptr);
   	}
 	
