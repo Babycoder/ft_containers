@@ -1,6 +1,6 @@
 //#include "vector/vector.hpp"
 #include "iterators.hpp"
-#include "vector/vector.hpp"
+//#include "vector/vector.hpp"
 
 #include <iostream>
 #include <vector>
@@ -14,10 +14,11 @@ int 	main()
 	ft::iterator<int> it2(data);
 
 	it++;
+	bool res = (it != it2);
 	//ft::iterator<int> it2(it);
 	//it2 = it;
 	//it += 0;
-	std::cout << (it == it2) << std::endl;
+	std::cout << res << std::endl;
 
 	/*ft::vector<int> test;
 	std::cout << test.empty() << std::endl;
