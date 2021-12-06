@@ -15,7 +15,7 @@ namespace ft {
 			typedef		T* pointer;
 			typedef 	std::ptrdiff_t difference_type;
 			typedef		T value_type;
-			typedef		std::random_access_iterator_tag	iterator_category;
+ 			typedef		std::random_access_iterator_tag	iterator_category;
 
 			iterator(pointer ptr) : _ptr(ptr){};
 			iterator(const iterator<T>& src) : _ptr(src._ptr) {}
@@ -33,8 +33,8 @@ namespace ft {
 			iterator& operator--() { _ptr--; return *this; };
 			iterator operator--(int) { iterator tmp = *this; _ptr--; return tmp; };
 
-			iterator& operator+(const difference_type n) { return  (_ptr + n); };
-			iterator& operator-(const difference_type n) { return  (_ptr - n); };
+			iterator operator+(const difference_type n) const { return  (_ptr + n); };
+			iterator operator-(const difference_type n) const { return  (_ptr - n); };
 			
 			
 			iterator&  operator+=(const difference_type n) { _ptr = _ptr + n; return *this; };
@@ -43,6 +43,8 @@ namespace ft {
 			
 
 			//iterator& operator-(iterator& rhs) { return  _ptr = _ptr - rhs.ptr;};
+			difference_type operator-(iterator<T> const & src){return(this->_ptr - src._ptr);}
+			
 			reference operator[](difference_type n) const {return *(_ptr + n); }
 
 			template <typename B>

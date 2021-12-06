@@ -1,10 +1,15 @@
-//#include "vector/vector.hpp"
-#include "iterators.hpp"
+
+
+
+//#include <iterator>
 //#include "vector/vector.hpp"
 
-#include <iostream>
 #include <vector>
-//#include <iterator>
+#include <iostream>
+
+#include "iterators.hpp"
+#include "iterators_traits.hpp"
+#include "reverse_iterator.hpp"
 
 
 int 	main()
