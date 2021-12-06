@@ -1,6 +1,7 @@
 #ifndef ITERATORS_TRAITS_HPP
 #define ITERATORS_TRAITS_HPP
 
+
 namespace ft
 {
 	template <class Iterator>
@@ -36,7 +37,6 @@ namespace ft
 			typedef std::random_access_iterator_tag		iterator_category;
 	};
 }
-
 
 
 #endif

@@ -42,8 +42,9 @@ namespace ft {
 
 			
 
-			iterator& operator-(iterator& rhs) { return  _ptr = _ptr - rhs.ptr;};
+			//iterator& operator-(iterator& rhs) { return  _ptr = _ptr - rhs.ptr;};
 			reference operator[](difference_type n) const {return *(_ptr + n); }
+
 			template <typename B>
 			friend bool operator== (const iterator<B>& lhs,const iterator<B>& rhs);
 			
