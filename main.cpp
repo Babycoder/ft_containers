@@ -10,6 +10,7 @@
 #include "iterators.hpp"
 #include "iterators_traits.hpp"
 #include "reverse_iterator.hpp"
+#include "type_traits.hpp"
 
 
 int 	main()
@@ -43,6 +44,7 @@ int 	main()
 	//std::cout << "test[0] = " << test.at(6)<< std::endl;
 	std::cout << "front = " << test.front()<< std::endl;
 	std::cout << "back = " << test.back()<< std::endl;*/
-;
+
+	std::cout << ft::is_integral<float>::value << std::endl;
 	return 0;
 }
