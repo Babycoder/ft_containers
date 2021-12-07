@@ -46,5 +46,6 @@ int 	main()
 	std::cout << "back = " << test.back()<< std::endl;*/
 
 	std::cout << ft::is_integral<float>::value << std::endl;
+
 	return 0;
 }
