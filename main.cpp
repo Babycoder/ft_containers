@@ -23,9 +23,21 @@ T max(T a, T b)
 }
 
 
-int 	main()
+int main ()
 {
-	/*int data[] = {10, 2, 3, 4, 5};
+	ft::vector<int> myvector;  // 5 default-constructed ints
+	for(int i = 1; i < 6; i++)
+		myvector.push_back(i);
+
+	std::cout << "rbegin =" << *myvector.rend() << std::endl;
+	std::cout << "rbegin =" << *(myvector.begin()) << std::endl;
+
+  return 0;
+}
+
+/*int 	main()
+{
+	int data[] = {10, 2, 3, 4, 5};
 	ft::iterator<int> it(data);
 	ft::iterator<int> it2(data);
 
@@ -34,7 +46,7 @@ int 	main()
 	//ft::iterator<int> it2(it);
 	//it2 = it;
 	//it += 0;
-	std::cout << (it == it2) << std::endl;*/
+	std::cout << (it == it2) << std::endl;
 
 	ft::vector<int> test;
 	std::vector<int> vector;
@@ -92,4 +104,4 @@ int 	main()
 
 
 	return 0;
-}
+}*/

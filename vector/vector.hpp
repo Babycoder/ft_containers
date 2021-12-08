@@ -63,7 +63,7 @@ namespace ft
 			
 			const_iterator begin() const
 			{
-				return (iterator(_data));
+				return (const_iterator(_data));
 			}
 			
 			iterator end()
@@ -73,27 +73,27 @@ namespace ft
 			
 			const_iterator end() const
 			{
-				return (iterator(_data + _size));
+				return (const_iterator(_data + _size));
 			}
 
 			reverse_iterator rbegin()
 			{
-				
+				return reverse_iterator(end());	
 			}
 			
 			const_reverse_iterator rbegin() const
 			{
-
+				return const_reverse_iterator(end());
 			}
 
 			reverse_iterator rend()
 			{
-
-			}
+				return reverse_iterator(begin());
+			}			
 			
 			const_reverse_iterator rend() const
 			{
-
+				return const_reverse_iterator(begin());
 			}
 
 			//Capacity :
@@ -122,7 +122,7 @@ namespace ft
 
 			reference at(size_type n){ return(_data[n]);}
 			//const_reference at(size_type n) const { return(_data[n]);}
-			reference at(size_type n)
+			reference at(size_type n) const
 			{	
 				if (n > _size - 1)
 					throw std::out_of_range("OUT\n"); 
