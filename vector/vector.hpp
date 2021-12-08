@@ -44,7 +44,7 @@ namespace ft
 				_alloc = alloc;
 				_size = 0;
 				_capacity = 0;
-				_data = _alloc.allocate(_capacity);	
+				_data = _alloc.allocate(_capacity);
 			}
 		
 			// DESTRUCTOR :
@@ -58,27 +58,27 @@ namespace ft
 
 			iterator begin()
 			{
-
+				return (iterator(_data));
 			}
 			
 			const_iterator begin() const
 			{
-
+				return (iterator(_data));
 			}
 			
 			iterator end()
 			{
-
+				return (iterator(_data + _size));
 			}
 			
 			const_iterator end() const
 			{
-
+				return (iterator(_data + _size));
 			}
 
 			reverse_iterator rbegin()
 			{
-
+				
 			}
 			
 			const_reverse_iterator rbegin() const
@@ -162,11 +162,10 @@ namespace ft
 			}
 
 		private :
-			value_type*		_data;
+			value_type		*_data;
 			size_type		_size;
 			size_type		_capacity;
 			allocator_type	_alloc;
-
 	 };
 }
 
