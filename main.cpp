@@ -2,19 +2,30 @@
 
 
 //#include <iterator>
-//#include "vector/vector.hpp"
 
 #include <vector>
 #include <iostream>
 
+#include "vector/vector.hpp"
 #include "iterators.hpp"
 #include "iterators_traits.hpp"
 #include "reverse_iterator.hpp"
 #include "type_traits.hpp"
 
 
+template<typename T>
+T max(T a, T b)
+{
+	if (a > b)
+		return a;
+	else
+		return b;
+}
+
+
 int 	main()
 {
+	ft::vector<int> vt;
 	int data[] = {10, 2, 3, 4, 5};
 	ft::iterator<int> it(data);
 	ft::iterator<int> it2(data);
@@ -45,7 +56,7 @@ int 	main()
 	std::cout << "front = " << test.front()<< std::endl;
 	std::cout << "back = " << test.back()<< std::endl;*/
 
-	std::cout << ft::is_integral<float>::value << std::endl;
+	std::cout << ft::is_integral<char>::value << std::endl;
 
 	return 0;
 }
