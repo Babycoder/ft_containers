@@ -57,6 +57,13 @@ int 	main()
 	std::cout << "test capacity = " << test.capacity() << std::endl;
 	std::cout << "test size     = " << test.size() << std::endl;
 	std::cout << "test front    = " << *(++test.begin()) << std::endl;
+	try{
+		std::cout << "test random   = " << test.at(50) << std::endl;
+	}
+	catch(std::out_of_range& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	while(it1_begin != it1_end)
 	{
 		std::cout << *it1_begin++ << ", ";
@@ -67,7 +74,17 @@ int 	main()
 	std::cout << "vector capacity = " << vector.capacity() << std::endl;
 	std::cout << "vector size     = " << vector.size() << std::endl;
 	std::cout << "vector front    = " << *(++vector.begin()) << std::endl;
-		while(it2_begin != it2_end)
+	try
+	{
+		std::cout << "vector random   = " << vector.at(50) << std::endl;
+	}
+	catch(std::out_of_range& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+	
+	while(it2_begin != it2_end)
 	{
 		std::cout << *it2_begin++ << ", ";
 	}

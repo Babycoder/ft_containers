@@ -120,7 +120,12 @@ namespace ft
 			reference operator[](size_type n){ return(_data[n]); }
 			const_reference operator[] (size_type n) const { return(_data[n]); }
 
-			reference at(size_type n){ return(_data[n]);}
+			reference at(size_type n)
+			{	
+				if (n > _size - 1)
+					throw std::out_of_range("OUT\n"); 
+				return(_data[n]);
+			}
 			const_reference at(size_type n) const { return(_data[n]);}
 			
 			reference front(){return(_data[0]);}
