@@ -25,8 +25,7 @@ T max(T a, T b)
 
 int 	main()
 {
-	ft::vector<int> vt;
-	int data[] = {10, 2, 3, 4, 5};
+	/*int data[] = {10, 2, 3, 4, 5};
 	ft::iterator<int> it(data);
 	ft::iterator<int> it2(data);
 
@@ -35,28 +34,37 @@ int 	main()
 	//ft::iterator<int> it2(it);
 	//it2 = it;
 	//it += 0;
-	std::cout << (it == it2) << std::endl;
+	std::cout << (it == it2) << std::endl;*/
 
-	/*ft::vector<int> test;
-	std::cout << test.empty() << std::endl;
-	test.push_back(9);
-	test.push_back(9);
-	test.push_back(9);
-	test.push_back(9);
-	test.push_back(690);
-	test.push_back(6900);
-	test.push_back(690000);
+	ft::vector<int> test;
+	std::vector<int> vector;
+//	for (int i = 0; i < 10 ; i++)
+		test.push_back(1);
+		test.push_back(0);
+		test.push_back(0);
+		test.push_back(0);
+		test.push_back(9);
+//	for (int i = 0; i < 10 ; i++)
+		vector.push_back(1);
+		vector.push_back(0);
+		vector.push_back(0);
+		vector.push_back(0);
+		vector.push_back(9);
+	
 	//test.at(6) = 69;
 	//test.clear();
-	std::cout << test.empty() << std::endl;
-	std::cout << test.capacity() << std::endl;
-	std::cout << test.size() << std::endl;
+	std::cout << "test capacity = " << test.capacity() << std::endl;
+	std::cout << "test size     = " << test.size() << std::endl;
+	std::cout << "test front     = " << test.back() << std::endl;
+	std::cout << "vector capacity = " << vector.capacity() << std::endl;
+	std::cout << "vector size     = " << vector.size() << std::endl;
+	std::cout << "vector front     = " << vector.back() << std::endl;
 	//std::cout << test.max_size() << std::endl;
 	//std::cout << "test[0] = " << test.at(6)<< std::endl;
-	std::cout << "front = " << test.front()<< std::endl;
-	std::cout << "back = " << test.back()<< std::endl;*/
+	//std::cout << "front = " << test.front()<< std::endl;
+	//std::cout << "back = " << test.back()<< std::endl;
 
-	std::cout << ft::is_integral<char>::value << std::endl;
+	//std::cout << ft::is_integral<char>::value << std::endl;
 
 	return 0;
 }
