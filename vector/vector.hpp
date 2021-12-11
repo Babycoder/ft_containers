@@ -100,17 +100,39 @@ namespace ft
 			
 			size_type size() const { return _size; }
 			
-			size_type max_size() const;
-			
-			void resize (size_type n, value_type val = value_type());
+			size_type max_size() const{return _alloc.max_size();}
 			
 			size_type capacity() const{ return _capacity; }
 			
-			bool empty() const { return !_size; }
-
-			void reserve (size_type n);			
-	
+			bool empty() const { return _size == 0; }
 			
+			void resize (size_type n, value_type val = value_type())
+			{
+				iterator it;
+			
+				if (n < _size)
+				{
+					for (it = begin() + n; it != end(); ++it)
+						pop_back();
+				}
+			 	else if (n > _size)
+				{
+					for (size_type i = _size; i != n; ++i)
+						push_back(val);
+				}
+				_size = n;
+			}
+
+			void reserve (size_type n)
+			{
+				if (n > max_size())
+					throw std::length_error("n is greater than max_size");
+				if (n > _capacity)
+					realloc(n);
+				return ;
+			}
+	
+
 
 
 
@@ -120,14 +142,20 @@ namespace ft
 			reference operator[](size_type n){ return(_data[n]); }
 			const_reference operator[] (size_type n) const { return(_data[n]); }
 
-			reference at(size_type n){ return(_data[n]);}
-			//const_reference at(size_type n) const { return(_data[n]);}
-			reference at(size_type n) const
+			
+			reference at(size_type n)
+			{
+				if (n > _size - 1)
+					throw std::out_of_range("OUT\n");  
+				return(_data[n]);
+			}
+			const_reference at(size_type n) const
 			{	
 				if (n > _size - 1)
 					throw std::out_of_range("OUT\n"); 
 				return(_data[n]);
 			}
+			
 			reference front(){return(_data[0]);}
 			const_reference front() const {return(_data[0]);}
 
@@ -146,6 +174,17 @@ namespace ft
 				_data[_size] = value;
 				_size++;
 			}
+
+			void	pop_back()
+			{
+				_alloc.destroy(_data + --_size); 
+			}
+
+			template <class InputIterator>
+			void assign (InputIterator first, InputIterator last);
+
+			void assign (size_type n, const value_type& val);
+		
 
 			// ALLOCATOR :
 			allocator_type get_allocator() const { return _alloc;};
@@ -173,6 +212,5 @@ namespace ft
 			allocator_type	_alloc;
 	 };
 }
-
 
 #endif

@@ -22,16 +22,32 @@ T max(T a, T b)
 		return b;
 }
 
-
 int main ()
 {
-	ft::vector<int> myvector;  // 5 default-constructed ints
-	for(int i = 1; i < 6; i++)
-		myvector.push_back(i);
+  ft::vector<int>::size_type sz;
 
-	std::cout << "rbegin =" << *myvector.rend() << std::endl;
-	std::cout << "rbegin =" << *(myvector.begin()) << std::endl;
+  ft::vector<int> foo;
+  sz = foo.capacity();
+  std::cout << "making foo grow:\n";
+  for (int i=0; i<100; ++i) {
+    foo.push_back(i);
+    if (sz!=foo.capacity()) {
+      sz = foo.capacity();
+      std::cout << "capacity changed: " << sz << '\n';
+    }
+  }
 
+  ft::vector<int> bar;
+  sz = bar.capacity();
+  bar.reserve(100);   // this is the only difference with foo above
+  std::cout << "making bar grow:\n";
+  for (int i=0; i<100; ++i) {
+    bar.push_back(i);
+    if (sz!=bar.capacity()) {
+      sz = bar.capacity();
+      std::cout << "capacity changed: " << sz << '\n';
+    }
+  }
   return 0;
 }
 
