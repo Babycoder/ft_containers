@@ -24,27 +24,21 @@ T max(T a, T b)
 
 int main ()
 {
-  ft::vector<int> foo;   // three ints with a value of 100
-  ft::vector<int> bar;   // five ints with a value of 200
+  ft::vector<int> myvector;
 
+  // set some values (from 1 to 10)
+  for (int i=1; i<=10; i++) myvector.push_back(i);
 
-	for (int i  = 0; i < 3 ; i++)
-		foo.push_back(100);
+  // erase the 6th element
+  myvector.erase (myvector.begin()+5);
 
-	for (int i  = 0; i < 5 ; i++)
-		bar.push_back(200);
-  //foo.swap(bar);
-  ft::swap(foo,bar);
+  // erase the first 3 elements:
+  //myvector.erase (myvector.begin(),myvector.begin()+3);
 
-  std::cout << "foo contains:";
-  for (unsigned i=0; i<foo.size(); i++)
-    std::cout << ' ' << foo[i];
-  std::cout << " size = " << foo.size() << " Capacity = " << foo.capacity() << '\n';
-
-  std::cout << "bar contains:";
-  for (unsigned i=0; i<bar.size(); i++)
-    std::cout << ' ' << bar[i];
-  std::cout << " size = " << bar.size() << " Capacity = " << bar.capacity() << '\n';
+  std::cout << "myvector contains:";
+  for (unsigned i=0; i<myvector.size(); ++i)
+    std::cout << ' ' << myvector[i];
+  std::cout << '\n';
 
   return 0;
 }

@@ -202,7 +202,19 @@ namespace ft
 					push_back(val);
 			}
 
-			iterator erase (iterator position);
+			iterator erase (iterator position)
+			{
+				_alloc.destroy(&(*position));
+			
+				for (std::ptrdiff_t i = &(*position) - _data; i < _size; ++i)
+				{
+					_alloc.construct(_data + i, _data + i + 1);
+					_alloc.destroy(_data + i + 1);
+				}
+				--_size;
+				return position;
+			}
+			
 			iterator erase (iterator first, iterator last);
 
 			void swap (vector& x)
@@ -279,8 +291,9 @@ namespace ft
 	template <class T, class Alloc>
   	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
-			return !operator< (lhs, rhs);
+		return !operator< (lhs, rhs);
 	}
+	
 	template <class T, class Alloc>
   	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
 	{
