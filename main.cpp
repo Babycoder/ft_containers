@@ -24,30 +24,20 @@ T max(T a, T b)
 
 int main ()
 {
-  ft::vector<int>::size_type sz;
+  std::vector<int> foo;   // three ints with a value of 100
+  std::vector<int> bar;   // two ints with a value of 200
 
-  ft::vector<int> foo;
-  sz = foo.capacity();
-  std::cout << "making foo grow:\n";
-  for (int i=0; i<100; ++i) {
-    foo.push_back(i);
-    if (sz!=foo.capacity()) {
-      sz = foo.capacity();
-      std::cout << "capacity changed: " << sz << '\n';
-    }
-  }
+  for(int i = 0; i < 3; i++)
+	foo.push_back(100);
+  for(int j = 0; j < 2; j++)
+	bar.push_back(200);
+  if (foo==bar) std::cout << "foo and bar are equal\n";
+  if (foo!=bar) std::cout << "foo and bar are not equal\n";
+  if (foo< bar) std::cout << "foo is less than bar\n";
+  if (foo> bar) std::cout << "foo is greater than bar\n";
+  if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+  if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
 
-  ft::vector<int> bar;
-  sz = bar.capacity();
-  bar.reserve(100);   // this is the only difference with foo above
-  std::cout << "making bar grow:\n";
-  for (int i=0; i<100; ++i) {
-    bar.push_back(i);
-    if (sz!=bar.capacity()) {
-      sz = bar.capacity();
-      std::cout << "capacity changed: " << sz << '\n';
-    }
-  }
   return 0;
 }
 

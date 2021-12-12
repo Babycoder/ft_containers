@@ -132,10 +132,6 @@ namespace ft
 				return ;
 			}
 	
-
-
-
-
 			
 			//Element access
 		
@@ -146,13 +142,13 @@ namespace ft
 			reference at(size_type n)
 			{
 				if (n > _size - 1)
-					throw std::out_of_range("OUT\n");  
+					throw std::out_of_range("index OUT of range\n");  
 				return(_data[n]);
 			}
 			const_reference at(size_type n) const
 			{	
 				if (n > _size - 1)
-					throw std::out_of_range("OUT\n"); 
+					throw std::out_of_range("index OUT of range\n"); 
 				return(_data[n]);
 			}
 			
@@ -171,8 +167,7 @@ namespace ft
 					_capacity = 1;
 				if (_size >= _capacity)
 					realloc(_capacity * 2);
-				_data[_size] = value;
-				_size++;
+				_alloc.construct(_data + _size++, value);
 			}
 
 			void	pop_back()
@@ -180,10 +175,36 @@ namespace ft
 				_alloc.destroy(_data + --_size); 
 			}
 
-			template <class InputIterator>
-			void assign (InputIterator first, InputIterator last);
+			void clear()
+			{
+				size_type tmp = _size;
+			
+				for (size_type i = 0; i < tmp; i++)
+					pop_back();
+			}
 
-			void assign (size_type n, const value_type& val);
+			template <class InputIterator>
+			void assign (InputIterator first, InputIterator last,
+					typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
+			{
+				clear();
+				while(first != last)
+				{
+					push_back(*first);
+					first++;
+				}
+			}
+
+			void assign (size_type n, const value_type& val)
+			{
+				clear();
+				while(n--)
+					push_back(val);
+			}
+
+			iterator erase (iterator position);
+			iterator erase (iterator first, iterator last);
+
 		
 
 			// ALLOCATOR :
@@ -191,14 +212,17 @@ namespace ft
 		
 		private :
 
-			void	realloc(size_t newCapacity)
+			void	realloc(size_type newCapacity)
 			{
 				value_type* newdata = _alloc.allocate(newCapacity);
 				if (newCapacity < _size)
 					_size = newCapacity;
 
-				for (size_t i = 0; i < _size; i++)
-					newdata[i] = _data[i];
+				for (size_type i = 0; i < _size; i++)
+				{
+					_alloc.construct(newdata + i, _data[i]);
+					_alloc.destroy(_data + i);
+				}
 
 				_alloc.deallocate(_data, _capacity);
 				_data = newdata;
@@ -211,6 +235,47 @@ namespace ft
 			size_type		_capacity;
 			allocator_type	_alloc;
 	 };
+
+	 //Non-member function overloads :
+
+	template <class T, class Alloc>
+  	bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+		if (lhs.size() != rhs.size())
+			return false;
+		return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+	}
+
+	template <class T, class Alloc>
+	bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+		return !operator==(lhs, rhs);
+	}
+
+	template <class T, class Alloc>
+  	bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+		return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	}
+
+	template <class T, class Alloc>
+  	bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+		return operator<(lhs, rhs) || operator==(lhs, rhs);
+	}
+
+	template <class T, class Alloc>
+  	bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+		return !operator<(lhs, rhs) && !operator==(lhs, rhs);
+	}
+
+	template <class T, class Alloc>
+  	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+	{
+			return !operator< (lhs, rhs);
+	}
+
 }
 
 #endif
