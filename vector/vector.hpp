@@ -46,10 +46,18 @@ namespace ft
 				_capacity = 0;
 				_data = _alloc.allocate(_capacity);
 			}
+
+			explicit vector (size_type n, const value_type& val = value_type(),
+										const allocator_type& alloc = allocator_type());
+			
 		
 			// DESTRUCTOR :
 			
-			~vector(){};
+			~vector()
+			{
+				clear();
+				_allocator.deallocate(_data, _capacity);
+			}
 
 			/********************** MEMBER FUNCTIONS ****************************/
 			
