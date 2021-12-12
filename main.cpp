@@ -24,19 +24,27 @@ T max(T a, T b)
 
 int main ()
 {
-  std::vector<int> foo;   // three ints with a value of 100
-  std::vector<int> bar;   // two ints with a value of 200
+  ft::vector<int> foo;   // three ints with a value of 100
+  ft::vector<int> bar;   // five ints with a value of 200
 
-  for(int i = 0; i < 3; i++)
-	foo.push_back(100);
-  for(int j = 0; j < 2; j++)
-	bar.push_back(200);
-  if (foo==bar) std::cout << "foo and bar are equal\n";
-  if (foo!=bar) std::cout << "foo and bar are not equal\n";
-  if (foo< bar) std::cout << "foo is less than bar\n";
-  if (foo> bar) std::cout << "foo is greater than bar\n";
-  if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
-  if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+
+	for (int i  = 0; i < 3 ; i++)
+		foo.push_back(100);
+
+	for (int i  = 0; i < 5 ; i++)
+		bar.push_back(200);
+  //foo.swap(bar);
+  ft::swap(foo,bar);
+
+  std::cout << "foo contains:";
+  for (unsigned i=0; i<foo.size(); i++)
+    std::cout << ' ' << foo[i];
+  std::cout << " size = " << foo.size() << " Capacity = " << foo.capacity() << '\n';
+
+  std::cout << "bar contains:";
+  for (unsigned i=0; i<bar.size(); i++)
+    std::cout << ' ' << bar[i];
+  std::cout << " size = " << bar.size() << " Capacity = " << bar.capacity() << '\n';
 
   return 0;
 }

@@ -205,7 +205,13 @@ namespace ft
 			iterator erase (iterator position);
 			iterator erase (iterator first, iterator last);
 
-		
+			void swap (vector& x)
+			{
+				std::swap(_data, x._data);
+				std::swap(_size, x._size);
+				std::swap(_capacity, x._capacity);
+				std::swap(_alloc, x._alloc);
+			}
 
 			// ALLOCATOR :
 			allocator_type get_allocator() const { return _alloc;};
@@ -274,6 +280,11 @@ namespace ft
   	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
 	{
 			return !operator< (lhs, rhs);
+	}
+	template <class T, class Alloc>
+  	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
+	{
+		x.swap(y);
 	}
 
 }
