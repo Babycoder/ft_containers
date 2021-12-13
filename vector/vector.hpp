@@ -66,7 +66,7 @@ namespace ft
 				_capacity = std::distance(first, last);
 				_data = _alloc.allocate(_capacity);
 				
-				while(first != last)
+				while(first != last) 
 				{
 					push_back(*first);
 					first++;
@@ -130,7 +130,7 @@ namespace ft
 
 			reverse_iterator rbegin()
 			{
-				return reverse_iterator(end());	
+				return reverse_iterator(end());
 			}
 			
 			const_reverse_iterator rbegin() const
@@ -141,7 +141,7 @@ namespace ft
 			reverse_iterator rend()
 			{
 				return reverse_iterator(begin());
-			}			
+			}
 			
 			const_reverse_iterator rend() const
 			{
