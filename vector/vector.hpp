@@ -38,8 +38,7 @@ namespace ft
 
 
 			// CONSTRUCTORS :
-
-			vector (const allocator_type& alloc = allocator_type())
+			explicit vector (const allocator_type& alloc = allocator_type())
 			{
 				_alloc = alloc;
 				_size = 0;
@@ -48,15 +47,60 @@ namespace ft
 			}
 
 			explicit vector (size_type n, const value_type& val = value_type(),
-										const allocator_type& alloc = allocator_type());
+										const allocator_type& alloc = allocator_type())
+			{
+				_alloc = alloc;
+				_size = 0;
+				_capacity = n;
+				_data = _alloc.allocate(_capacity);
+				while (n--)
+					push_back(val);
+			}
+
+			template <class InputIterator>
+			vector (InputIterator first, InputIterator last,const allocator_type& alloc = allocator_type(),
+										typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
+			{
+				_alloc = alloc;
+				_size = 0;
+				_capacity = std::distance(first, last);
+				_data = _alloc.allocate(_capacity);
+				
+				while(first != last)
+				{
+					push_back(*first);
+					first++;
+				}
+			}
+
+			vector (const vector& x)
+			{
+				const_iterator first = x.begin();
+				const_iterator last = x.end();
+
+				_alloc = x.get_allocator();
+				_size = 0;
+				_capacity = x.capacity();
+				_data = _alloc.allocate(_capacity);
+
+				while(first != last)
+				{
+					push_back(*first);
+					first++;
+				}
+				
+			}
 			
+			// Operator :
+
+			 vector& operator= (const vector& x);
 		
 			// DESTRUCTOR :
 			
 			~vector()
 			{
 				clear();
-				_allocator.deallocate(_data, _capacity);
+				_alloc.deallocate(_data, _capacity);
 			}
 
 			/********************** MEMBER FUNCTIONS ****************************/
@@ -173,7 +217,7 @@ namespace ft
 			{
 				if (_capacity == 0)
 					_capacity = 1;
-				if (_size >= _capacity)
+				if (_size > _capacity)
 					realloc(_capacity * 2);
 				_alloc.construct(_data + _size++, value);
 			}
@@ -191,7 +235,7 @@ namespace ft
 					pop_back();
 			}
 
-			template <class InputIterator>
+			/*template <class InputIterator>
 			void assign (InputIterator first, InputIterator last,
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
 			{
@@ -223,7 +267,7 @@ namespace ft
 				return position;
 			}
 			
-			iterator erase (iterator first, iterator last);
+			iterator erase (iterator first, iterator last);*/
 
 			void swap (vector& x)
 			{
