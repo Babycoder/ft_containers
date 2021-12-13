@@ -271,7 +271,21 @@ namespace ft
 				return position;
 			}
 			
-			/*iterator erase (iterator first, iterator last);*/
+			iterator erase (iterator first, iterator last)
+			{
+				size_type			n = std::distance(first, last);
+				iterator			it = first;
+	
+				for (iterator iter = first; iter < last; ++iter)
+					_alloc.destroy(&(*iter));
+				for (size_type i = &(*it) - _data; i < _size; ++i)
+				{
+					_alloc.construct(_data + i, *(_data + i + n));
+					_alloc.destroy(_data + i + n);
+				}
+				_size-= n;
+				return first;
+			}
 
 			void swap (vector& x)
 			{
