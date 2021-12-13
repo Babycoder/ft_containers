@@ -40,9 +40,6 @@ namespace ft {
 			iterator&  operator+=(const difference_type n) { _ptr = _ptr + n; return *this; };
 			iterator&  operator-=(const difference_type n) { _ptr = _ptr - n; return *this; };
 
-			
-
-			//iterator& operator-(iterator& rhs) { return  _ptr = _ptr - rhs.ptr;};
 			difference_type operator-(iterator<T> const & src){return(this->_ptr - src._ptr);}
 			
 			reference operator[](difference_type n) const {return *(_ptr + n); }
