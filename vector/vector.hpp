@@ -82,18 +82,22 @@ namespace ft
 				_size = 0;
 				_capacity = x.capacity();
 				_data = _alloc.allocate(_capacity);
-
+				
 				while(first != last)
 				{
 					push_back(*first);
 					first++;
 				}
-				
 			}
 			
 			// Operator :
 
-			 vector& operator= (const vector& x);
+			 vector& operator= (const vector& x)
+			 {
+				if (this != &x)
+				 	assign(x.begin(), x.end());
+				return *this;
+			 }
 		
 			// DESTRUCTOR :
 			
@@ -217,7 +221,7 @@ namespace ft
 			{
 				if (_capacity == 0)
 					_capacity = 1;
-				if (_size > _capacity)
+				if (_size >= _capacity)
 					realloc(_capacity * 2);
 				_alloc.construct(_data + _size++, value);
 			}
@@ -235,7 +239,7 @@ namespace ft
 					pop_back();
 			}
 
-			/*template <class InputIterator>
+			template <class InputIterator>
 			void assign (InputIterator first, InputIterator last,
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
 			{
@@ -260,14 +264,14 @@ namespace ft
 			
 				for (std::ptrdiff_t i = &(*position) - _data; i < _size; ++i)
 				{
-					_alloc.construct(_data + i, _data + i + 1);
+					_alloc.construct(_data + i, *(_data + i + 1));
 					_alloc.destroy(_data + i + 1);
 				}
 				--_size;
 				return position;
 			}
 			
-			iterator erase (iterator first, iterator last);*/
+			/*iterator erase (iterator first, iterator last);*/
 
 			void swap (vector& x)
 			{
