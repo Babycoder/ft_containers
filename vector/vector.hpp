@@ -297,8 +297,10 @@ namespace ft
 
 			iterator insert (iterator position, const value_type& val)
 			{
+				size_type dis = std::distance(begin(), position);
+
 				insert(position, 1, val);
-				return position;
+				return (iterator(_data + dis));
 			}
 			void insert (iterator position, size_type n, const value_type& val)
 			{

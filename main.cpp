@@ -49,8 +49,10 @@ int main ()
     ft::vector<int>::iterator it;
 
     it = myvector.begin() + 2;
+    std::cout << "\n *it = " << *it << std::endl;
+    it =  myvector.insert( it , 42);
+    std::cout << "\n *it = " << *it << std::endl;
 
-    myvector.insert( it , 42);
 
   // it = myvector.insert ( it + 1 , 420 );
     //it = myvector.insert ( it + 1 , 420 );
