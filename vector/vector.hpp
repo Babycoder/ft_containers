@@ -262,7 +262,7 @@ namespace ft
 			{
 				_alloc.destroy(&(*position));
 			
-				for (std::ptrdiff_t i = &(*position) - _data; i < _size; ++i)
+				for (size_type i = &(*position) - _data; i < _size; ++i)
 				{
 					_alloc.construct(_data + i, *(_data + i + 1));
 					_alloc.destroy(_data + i + 1);
@@ -293,6 +293,27 @@ namespace ft
 				std::swap(_size, x._size);
 				std::swap(_capacity, x._capacity);
 				std::swap(_alloc, x._alloc);
+			}
+
+			iterator insert (iterator position, const value_type& val)
+			{
+				insert(position, 1, val);
+				return position;
+			}
+			void insert (iterator position, size_type n, const value_type& val)
+			{
+				vector tmp(position, end());
+								
+				_size -= std::distance(position, end());
+				while (n) {
+					push_back(val);
+					--n;
+				}
+				iterator it = tmp.begin();
+				while (it != tmp.end()) {
+					push_back(*it);
+					++it;
+				}
 			}
 
 			// ALLOCATOR :
