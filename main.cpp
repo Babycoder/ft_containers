@@ -46,10 +46,12 @@ T max(T a, T b)
 int main ()
 {
     ft::stack<int> stack;
+    ft::stack<int> s;
+    
     stack.push(5);
     stack.pop();
-    
-    std::cout << stack.empty() << std::endl;
+
+    std::cout << stack.empty() << '\n' << (stack == s) <<std::endl;
     /*std::vector<int> myvector (3, 5);
     std::vector<int>::iterator it;
 
