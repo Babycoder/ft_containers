@@ -51,19 +51,61 @@ namespace ft
                 _vector.pop_back();
             }
             
-            friend bool operator== (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
-            {
-                return (lhs._vector > rhs._vector);
-            }
+            template <class OT, class OContainer>
+            friend bool operator== (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs);
+
+            template <class OT, class OContainer>
+            friend bool operator!= (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs);
+
+            template <class OT, class OContainer>
+            friend bool operator< (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs);
+
+            template <class OT, class OContainer>
+            friend bool operator<= (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs);
+
+            template <class OT, class OContainer>
+            friend bool operator> (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs);
+
+            template <class OT, class OContainer>
+            friend bool operator>= (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs);
     };
 
-    /*template <class f, class Ct>
-    bool operator== (const stack<f,Ct>& lhs, const stack<f,Ct>& rhs)
+    template <class OT, class OContainer>
+    bool operator== (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs)
+    {
+        return (lhs._vector == rhs._vector);
+    }
+
+    template <class OT, class OContainer>
+    bool operator!= (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs)
+    {
+        return (lhs._vector != rhs._vector);
+    }
+
+    template <class OT, class OContainer>
+    bool operator<  (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs)
+    {
+        return (lhs._vector < rhs._vector);
+    }
+
+    template <class OT, class OContainer>
+    bool operator<= (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs)
+    {
+        return (lhs._vector <= rhs._vector);
+    }
+
+    template <class OT, class OContainer>
+    bool operator>  (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs)
     {
         return (lhs._vector > rhs._vector);
-    }*/
-}
+    }
 
+    template <class OT, class OContainer>
+    bool operator>= (const stack<OT,OContainer>& lhs, const stack<OT,OContainer>& rhs)
+    {
+        return (lhs._vector >= rhs._vector);
+    }
+}
 
 
 

@@ -51,7 +51,7 @@ int main ()
     stack.push(5);
     stack.pop();
 
-    std::cout << stack.empty() << '\n' << (stack == s) <<std::endl;
+    std::cout << stack.empty() << '\n' << (stack != s) <<std::endl;
     /*std::vector<int> myvector (3, 5);
     std::vector<int>::iterator it;
 
