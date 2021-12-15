@@ -7,10 +7,10 @@
 #include <iostream>
 
 #include "vector/vector.hpp"
-#include "iterators.hpp"
-#include "iterators_traits.hpp"
-#include "reverse_iterator.hpp"
-#include "type_traits.hpp"
+
+#include "stack/stack.hpp"
+
+
 
 
 template<typename T>
@@ -45,8 +45,13 @@ T max(T a, T b)
 
 int main ()
 {
-    ft::vector<int> myvector (3, 5);
-    ft::vector<int>::iterator it;
+    ft::stack<int> stack;
+    stack.push(5);
+    stack.pop();
+    
+    std::cout << stack.empty() << std::endl;
+    /*std::vector<int> myvector (3, 5);
+    std::vector<int>::iterator it;
 
     it = myvector.begin() + 2;
     //std::cout << "\n *it = " << *it << std::endl;
@@ -71,9 +76,9 @@ int main ()
     std::cout << "myvector contains:";
     for (it=myvector.begin(); it<myvector.end(); it++)
       std::cout << ' ' << *it;
-    std::cout<<'\n';
-    //std::cout << "\nSize = " << myvector.size() << " Capacity = " << myvector.capacity() << '\n';
+    //std::cout<<'\n';
+    std::cout << "\nSize = " << myvector.size() << " Capacity = " << myvector.capacity() << '\n';
     //std::cout << myvector[2] << std::endl;
 
-    return 0;
+    return 0;*/
 }
