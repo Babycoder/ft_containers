@@ -49,29 +49,30 @@ int main ()
     ft::vector<int>::iterator it;
 
     it = myvector.begin() + 2;
-    std::cout << "\n *it = " << *it << std::endl;
+    //std::cout << "\n *it = " << *it << std::endl;
     it =  myvector.insert( it , 42);
-    std::cout << "\n *it = " << *it << std::endl;
+    //std::cout << "\n *it = " << *it << std::endl;
 
 
-  // it = myvector.insert ( it + 1 , 420 );
+   //it = myvector.insert ( it + 1 , 420 );
     //it = myvector.insert ( it + 1 , 420 );
 
-    //myvector.insert (it,2,300);
+   myvector.insert (it,2,300);
 
     // "it" no longer valid, get a new one:
-    /*it = myvector.begin();
+    it = myvector.begin();
 
     std::vector<int> anothervector (2,400);
     myvector.insert (it+2,anothervector.begin(),anothervector.end());
 
     int myarray [] = { 501,502,503 };
-    myvector.insert (myvector.begin(), myarray, myarray+3);*/
+    myvector.insert (myvector.begin(), myarray, myarray+3);
 
     std::cout << "myvector contains:";
     for (it=myvector.begin(); it<myvector.end(); it++)
       std::cout << ' ' << *it;
-    std::cout << "\nSize = " << myvector.size() << " Capacity = " << myvector.capacity() << '\n';
+    std::cout<<'\n';
+    //std::cout << "\nSize = " << myvector.size() << " Capacity = " << myvector.capacity() << '\n';
     //std::cout << myvector[2] << std::endl;
 
     return 0;

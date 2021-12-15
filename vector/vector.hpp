@@ -318,6 +318,22 @@ namespace ft
 				}
 			}
 
+			template <class InputIterator>
+			void insert (iterator position, InputIterator first, InputIterator last, 
+							typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
+			{
+				vector tmp(position, end());
+
+				_size -= std::distance(position, end());
+				while(first != last)
+					push_back(*first++);
+				iterator it = tmp.begin();
+				while (it != tmp.end()) {
+					push_back(*it);
+					++it;
+				}
+			}
+
 			// ALLOCATOR :
 			allocator_type get_allocator() const { return _alloc;};
 		
