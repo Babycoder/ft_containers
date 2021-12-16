@@ -21,6 +21,11 @@ namespace ft {
 			iterator(const iterator<T>& src) : _ptr(src._ptr) {}
 			iterator() : _ptr(){};
 			~iterator(){};
+
+			operator iterator<const T>() 
+            {
+                return iterator<const T>(_ptr);
+            }
 			
 			iterator& operator=(const iterator& rhs){this->_ptr = rhs._ptr; return *this; }
 
@@ -107,7 +112,7 @@ namespace ft {
 	template <typename B>
 	iterator<B> operator+ (typename iterator<B>::difference_type n, const iterator<B>& it)
 	{
-		return(n + it._ptr);
+		return(it + n);
 	}
 }
 

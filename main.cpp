@@ -45,42 +45,14 @@ T max(T a, T b)
 
 int main ()
 {
-    ft::stack<int> stack;
-    ft::stack<int> s;
-    
-    stack.push(5);
-    stack.pop();
+  ft::vector<int> vector(5, 42);
 
-    std::cout << stack.empty() << '\n' << (stack != s) <<std::endl;
-    /*std::vector<int> myvector (3, 5);
-    std::vector<int>::iterator it;
+  ft::vector<int>::iterator it = vector.begin();
+  ft::vector<int>::const_iterator it2(it);
+  
 
-    it = myvector.begin() + 2;
-    //std::cout << "\n *it = " << *it << std::endl;
-    it =  myvector.insert( it , 42);
-    //std::cout << "\n *it = " << *it << std::endl;
+  std::cout << *it2 << std::endl;
 
 
-   //it = myvector.insert ( it + 1 , 420 );
-    //it = myvector.insert ( it + 1 , 420 );
-
-   myvector.insert (it,2,300);
-
-    // "it" no longer valid, get a new one:
-    it = myvector.begin();
-
-    std::vector<int> anothervector (2,400);
-    myvector.insert (it+2,anothervector.begin(),anothervector.end());
-
-    int myarray [] = { 501,502,503 };
-    myvector.insert (myvector.begin(), myarray, myarray+3);
-
-    std::cout << "myvector contains:";
-    for (it=myvector.begin(); it<myvector.end(); it++)
-      std::cout << ' ' << *it;
-    //std::cout<<'\n';
-    std::cout << "\nSize = " << myvector.size() << " Capacity = " << myvector.capacity() << '\n';
-    //std::cout << myvector[2] << std::endl;
-
-    return 0;*/
+  return 0;
 }

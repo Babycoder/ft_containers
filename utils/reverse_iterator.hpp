@@ -31,7 +31,14 @@ namespace ft
 			explicit reverse_iterator (iterator_type it) : _current(it) {};
 			
 			template <class Iter>
-  			reverse_iterator (const reverse_iterator<Iter>& rev_it) : _current(rev_it._current) {};
+  			reverse_iterator (const reverse_iterator<Iter>& rev_it)  { *this = rev_it;};
+
+			template<typename U>
+			reverse_iterator& operator=(const reverse_iterator<U>& rhs)
+			{
+				_current = rhs.base();
+				return *this;
+			}
 
 			iterator_type base() const { return _current; };
 			
@@ -128,7 +135,7 @@ namespace ft
 	template <class Iterator>
 	bool operator> (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs)
 	{
-		return (lhs.base() > rhs.base());
+		return (lhs.base() < rhs.base());
 	};
 
 	template <class Iterator>
