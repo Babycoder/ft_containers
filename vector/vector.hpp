@@ -6,11 +6,11 @@
 
 // my headers :
 
-#include "../iterators.hpp"
-#include "../reverse_iterator.hpp"
-#include "../iterators_traits.hpp"
-#include "../type_traits.hpp"
-#include "../algorithm.hpp"
+#include "../utils/iterators.hpp"
+#include "../utils/reverse_iterator.hpp"
+#include "../utils/iterators_traits.hpp"
+#include "../utils/type_traits.hpp"
+#include "../utils/algorithm.hpp"
 
 /*******************************************/
 
