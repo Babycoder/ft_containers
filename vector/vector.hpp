@@ -164,11 +164,12 @@ namespace ft
 			
 			void resize (size_type n, value_type val = value_type())
 			{
-				iterator it;
-			
+				if (n > _capacity)
+					realloc(n);
+
 				if (n < _size)
 				{
-					for (it = begin() + n; it != end(); ++it)
+					for (iterator it = begin() + n; it != end(); ++it)
 						pop_back();
 				}
 			 	else if (n > _size)
@@ -219,10 +220,13 @@ namespace ft
 			
 			void	push_back(const T& value )
 			{
-				if (_capacity == 0)
-					_capacity = 1;
-				if (_size >= _capacity)
-					realloc(_capacity * 2);
+				if (_size + 1 > _capacity)
+				{
+					if (_capacity == 0)
+						realloc(1);
+					else
+						realloc(_capacity * 2);
+				}
 				_alloc.construct(_data + _size++, value);
 			}
 

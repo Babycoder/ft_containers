@@ -45,14 +45,21 @@ T max(T a, T b)
 
 int main ()
 {
-  ft::vector<int> vector(5, 42);
+  ft::vector<int> myvector;
+  int myint;
 
-  ft::vector<int>::iterator it = vector.begin();
-  ft::vector<int>::const_iterator it2(it);
-  
+  std::cout << "Please enter some integers (enter 0 to end):\n";
 
-  std::cout << *it2 << std::endl;
+  do {
+    std::cin >> myint;
+    myvector.push_back (myint);
+  } while (myint);
 
+  std::cout << "myvector stores " << int(myvector.size()) << " numbers.\n";
+  std::cout << '\n' << "Size = " << myvector.size() << " Capacity = " << myvector.capacity() << std::endl;
 
   return 0;
 }
+
+
+// std::cout << '\n' << "Size = " << myvector.size() << " Capacity = " << myvector.capacity() << std::endl;
