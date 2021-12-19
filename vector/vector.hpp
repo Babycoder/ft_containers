@@ -331,8 +331,16 @@ namespace ft
 			void insert (iterator position, size_type n, const value_type& val)
 			{
 				vector tmp(position, end());
-								
-				_size -= std::distance(position, end());
+
+
+				size_type dis = std::distance(position, end());
+				
+				while(dis)
+				{
+					pop_back();
+					dis--;
+				}	
+				//_size -= std::distance(position, end());
 				
 				while (n) {
 					push_back(val);
@@ -344,6 +352,48 @@ namespace ft
 					push_back(*it);
 					++it;
 				}
+				/*if (n + _size > _capacity)
+				{
+					size_type i = 0;
+					value_type *newdata = _alloc.allocate(n + _size);
+					iterator it_new = begin();
+					while(it_new != position)
+					{
+						_alloc.construct(newdata + i++, *it_new);
+						_alloc.destroy(&(*it_new));
+						it_new++;
+					}
+					for(size_type j = 0; j < n; j++)
+					{
+						_alloc.construct(newdata + i++, val);
+					}
+					while(it_new != end())
+					{
+						_alloc.construct(newdata + i++, *it_new);
+						_alloc.destroy(&(*it_new));
+						it_new++;
+					}
+					_alloc.deallocate(_data, _capacity);
+					_data = newdata;
+					_capacity = _size + n;
+				}
+				else
+				{
+					size_type tmp = n;
+					reverse_iterator r_it = rbegin();
+					while(&(*r_it) != &(*position))
+					{
+						_alloc.construct(_data + _size + tmp--, *r_it);
+						_alloc.destroy(&(*r_it));
+						r_it++;
+					}
+					for(size_type i = 0; i < n; i++)
+					{
+						_alloc.construct(&(*position), val);
+						position++;
+					}
+				}*/
+				_size += n;
 			}
 
 			template <class InputIterator>
@@ -356,7 +406,7 @@ namespace ft
 				
 				while(first != last)
 					push_back(*first++);
-				
+
 				iterator it = tmp.begin();
 				while (it != tmp.end()) {
 					push_back(*it);
