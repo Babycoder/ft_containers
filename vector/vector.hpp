@@ -247,19 +247,40 @@ namespace ft
 			void assign (InputIterator first, InputIterator last,
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
 			{
-				clear();
-				while(first != last)
+				size_type n = std::distance(first, last);
+
+				if (n < _size)
 				{
-					push_back(*first);
-					first++;
+					clear();
+					while(first != last)
+						push_back(*first++);
+				}
+				else
+				{
+					clear();
+					realloc(n);
+					while(first != last)
+						push_back(*first++);
+
 				}
 			}
 
 			void assign (size_type n, const value_type& val)
 			{
-				clear();
-				while(n--)
-					push_back(val);
+				if (n < _size)
+				{
+					clear();
+					while(n--)
+						push_back(val);
+				}
+				else
+				{
+					clear();
+					realloc(n);
+					while(n--)
+						push_back(val);
+
+				}
 			}
 
 			iterator erase (iterator position)
@@ -306,15 +327,18 @@ namespace ft
 				insert(position, 1, val);
 				return (iterator(_data + dis));
 			}
+			
 			void insert (iterator position, size_type n, const value_type& val)
 			{
 				vector tmp(position, end());
 								
 				_size -= std::distance(position, end());
+				
 				while (n) {
 					push_back(val);
 					--n;
 				}
+				
 				iterator it = tmp.begin();
 				while (it != tmp.end()) {
 					push_back(*it);
@@ -329,8 +353,10 @@ namespace ft
 				vector tmp(position, end());
 
 				_size -= std::distance(position, end());
+				
 				while(first != last)
 					push_back(*first++);
+				
 				iterator it = tmp.begin();
 				while (it != tmp.end()) {
 					push_back(*it);

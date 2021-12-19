@@ -45,19 +45,28 @@ T max(T a, T b)
 
 int main ()
 {
-  ft::vector<int> myvector;
-  int myint;
+  std::vector<int> first;
+  std::vector<int> second;
+  std::vector<int> third;
 
-  std::cout << "Please enter some integers (enter 0 to end):\n";
+  for(int i = 0; i < 10; i++)
+    first.push_back(i);
+  first.assign (100,100);          // 7 ints with a value of 100
 
-  do {
-    std::cin >> myint;
-    myvector.push_back (myint);
-  } while (myint);
+  std::vector<int>::iterator it;
+  it=first.begin()+1;
 
-  std::cout << "myvector stores " << int(myvector.size()) << " numbers.\n";
-  std::cout << '\n' << "Size = " << myvector.size() << " Capacity = " << myvector.capacity() << std::endl;
+  second.assign (it,first.end()-1); // the 5 central values of first
 
+  int myints[] = {1776,7,4};
+  third.assign (myints,myints+3);   // assigning from array.
+
+  std::cout << "Size of first: " << int (first.size()) << " Capacity = " << int(first.capacity()) <<'\n';
+  std::cout << "Size of second: " << int (second.size())<< " Capacity = "<< int(second.capacity()) << '\n';
+  std::cout << "Size of third: " << int (third.size())<< " Capacity = "<< int(third.capacity()) << '\n';
+  
+ // std::cout << '\n' << "Size = " << myvector.size() << " Capacity = " << myvector.capacity() << std::endl;
+  
   return 0;
 }
 
