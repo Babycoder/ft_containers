@@ -326,33 +326,47 @@ namespace ft
 			
 			void insert (iterator position, size_type n, const value_type& val)
 			{
-				vector tmp(position, end());
+				// if (_size + n > _capacity)
+				// 	realloc(n + _size);
+				
+				// iterator tmp_pos = position;
+				// value_type *tmp =_alloc.allocate(position - end());
+				// int i = 0;
+				// while (tmp_pos != end())
+				// {
+				// 	tmp[i] = *tmp_pos++;
+				// 	i++;
+				// }
 
+				
+				// iterator it_end = end();
+				
+				// while(it_end != position)
+				// {
+				// 	pop_back();
+				// 	--it_end;
+				// }	
+				
+				// while (n) {
+				// 	push_back(val);
+				// 	--n;
+				// }
+				
+				// //iterator it = tmp.begin();
+				// while (dis) {
+				// 	push_back(tmp);
+				// 	++it;
+				// }
+				
+				size_type v = n;
 
-				iterator it_end = end();
-				
-				while(it_end != position)
-				{
-					pop_back();
-					--it_end;
-				}	
-				
-				while (n) {
-					push_back(val);
-					--n;
-				}
-				
-				iterator it = tmp.begin();
-				while (it != tmp.end()) {
-					push_back(*it);
-					++it;
-				}
-				/*size_type v = n;
-				
 				if (n + _size > _capacity)
 				{
+					size_type _newCapacity = _capacity * 2;
+					if (_newCapacity < n + _size)
+						_newCapacity = n + _size;
 					size_type i = 0;
-					value_type *newdata = _alloc.allocate(n + _size);
+					value_type *newdata = _alloc.allocate(_newCapacity);
 					iterator it_new = begin();
 					while(it_new != position)
 					{
@@ -361,9 +375,7 @@ namespace ft
 						it_new++;
 					}
 					for(size_type j = 0; j < n; j++)
-					{
 						_alloc.construct(newdata + i++, val);
-					}
 					while(it_new != end())
 					{
 						_alloc.construct(newdata + i++, *it_new);
@@ -372,17 +384,17 @@ namespace ft
 					}
 					_alloc.deallocate(_data, _capacity);
 					_data = newdata;
-					_capacity = _size + n;
+					_capacity = _newCapacity;
 				}
 				else
 				{
-					size_type tmp = n;
-					reverse_iterator r_it = rbegin();
-					while(&(*r_it) != &(*position))
+					int tmp = v;
+					//reverse_iterator r_it = rbegin();
+					
+					for (iterator it = end(); it >= position; --it)
 					{
-						_alloc.construct(_data + _size + tmp--, *r_it);
-						_alloc.destroy(&(*r_it));
-						r_it++;
+						_alloc.construct(_data + _size + tmp--, *it);
+						_alloc.destroy(&(*it));
 					}
 					for(size_type i = 0; i < n; i++)
 					{
@@ -390,31 +402,59 @@ namespace ft
 						position++;
 					}
 				}
-				_size += v;*/
+				_size += v;
 			}
 
 			template <class InputIterator>
 			void insert (iterator position, InputIterator first, InputIterator last,
 							typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
 			{
-				vector tmp(position, end());
+				size_type n  = std::distance(first, last);
+				size_type v = n;
 
-				iterator it_end = end();
-				
-				while(it_end != position)
+				if (n + _size > _capacity)
 				{
-					pop_back();
-					--it_end;
-				}	
-				
-				while(first != last)
-					push_back(*first++);
-
-				iterator it = tmp.begin();
-				while (it != tmp.end()) {
-					push_back(*it);
-					++it;
+					size_type _newCapacity = _capacity * 2;
+					if (_newCapacity < n + _size)
+						_newCapacity = n + _size;
+					size_type i = 0;
+					value_type *newdata = _alloc.allocate(_newCapacity);
+					iterator it_new = begin();
+					while(it_new != position)
+					{
+						_alloc.construct(newdata + i++, *it_new);
+						_alloc.destroy(&(*it_new));
+						it_new++;
+					}
+					while(first != last)
+						_alloc.construct(newdata + i++, *first++);
+					while(it_new != end())
+					{
+						_alloc.construct(newdata + i++, *it_new);
+						_alloc.destroy(&(*it_new));
+						it_new++;
+					}
+					_alloc.deallocate(_data, _capacity);
+					_data = newdata;
+					_capacity = _newCapacity;
 				}
+				else
+				{
+					int tmp = v;
+					//reverse_iterator r_it = rbegin();
+					
+					for (iterator it = end(); it >= position; --it)
+					{
+						_alloc.construct(_data + _size + tmp--, *it);
+						_alloc.destroy(&(*it));
+					}
+					while(first != last)
+					{
+						_alloc.construct(&(*position), *first++);
+						position++;
+					}
+				}
+				_size += v;
 			}
 
 			// ALLOCATOR :
