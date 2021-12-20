@@ -43,7 +43,10 @@ T max(T a, T b)
   return 0;
 }*/
 
-int main ()
+#include <iostream>
+#include <vector>
+
+/*int main ()
 {
   ft::vector<int> myvector (3,100);
   ft::vector<int>::iterator it;
@@ -65,6 +68,27 @@ int main ()
   std::cout << "myvector contains:";
   for (it=myvector.begin(); it<myvector.end(); it++)
     std::cout << ' ' << *it;
+  std::cout << '\n' << "Size = " << myvector.size() << " Capacity = " << myvector.capacity() << std::endl;
+
+
+  return 0;
+}*/
+int main ()
+{
+  ft::vector<int> myvector;
+
+  // set some values (from 1 to 10)
+  for (int i=1; i<=10; i++) myvector.push_back(i);
+
+  // erase the 6th element
+  myvector.erase (myvector.begin()+5);
+
+  // erase the first 3 elements:
+  myvector.erase (myvector.begin(),myvector.begin()+3);
+
+  std::cout << "myvector contains:";
+  for (unsigned i=0; i<myvector.size(); ++i)
+    std::cout << ' ' << myvector[i];
   std::cout << '\n';
 
   return 0;

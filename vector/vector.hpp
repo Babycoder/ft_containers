@@ -299,16 +299,12 @@ namespace ft
 			iterator erase (iterator first, iterator last)
 			{
 				size_type			n = std::distance(first, last);
-				iterator			it = first;
-	
-				for (iterator iter = first; iter < last; ++iter)
-					_alloc.destroy(&(*iter));
-				for (size_type i = &(*it) - _data; i < _size; ++i)
-				{
-					_alloc.construct(_data + i, *(_data + i + n));
-					_alloc.destroy(_data + i + n);
-				}
-				_size-= n;
+				iterator tmp = first;
+				
+				for(iterator it_last = last; it_last != end(); it_last++)
+					*(tmp++) = *it_last;
+				while(n--)
+					pop_back();
 				return first;
 			}
 
@@ -333,14 +329,13 @@ namespace ft
 				vector tmp(position, end());
 
 
-				size_type dis = std::distance(position, end());
+				iterator it_end = end();
 				
-				while(dis)
+				while(it_end != position)
 				{
 					pop_back();
-					dis--;
+					--it_end;
 				}	
-				//_size -= std::distance(position, end());
 				
 				while (n) {
 					push_back(val);
@@ -352,7 +347,9 @@ namespace ft
 					push_back(*it);
 					++it;
 				}
-				/*if (n + _size > _capacity)
+				/*size_type v = n;
+				
+				if (n + _size > _capacity)
 				{
 					size_type i = 0;
 					value_type *newdata = _alloc.allocate(n + _size);
@@ -392,8 +389,8 @@ namespace ft
 						_alloc.construct(&(*position), val);
 						position++;
 					}
-				}*/
-				_size += n;
+				}
+				_size += v;*/
 			}
 
 			template <class InputIterator>
@@ -402,7 +399,13 @@ namespace ft
 			{
 				vector tmp(position, end());
 
-				_size -= std::distance(position, end());
+				iterator it_end = end();
+				
+				while(it_end != position)
+				{
+					pop_back();
+					--it_end;
+				}	
 				
 				while(first != last)
 					push_back(*first++);
