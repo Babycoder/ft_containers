@@ -326,39 +326,6 @@ namespace ft
 			
 			void insert (iterator position, size_type n, const value_type& val)
 			{
-				// if (_size + n > _capacity)
-				// 	realloc(n + _size);
-				
-				// iterator tmp_pos = position;
-				// value_type *tmp =_alloc.allocate(position - end());
-				// int i = 0;
-				// while (tmp_pos != end())
-				// {
-				// 	tmp[i] = *tmp_pos++;
-				// 	i++;
-				// }
-
-				
-				// iterator it_end = end();
-				
-				// while(it_end != position)
-				// {
-				// 	pop_back();
-				// 	--it_end;
-				// }	
-				
-				// while (n) {
-				// 	push_back(val);
-				// 	--n;
-				// }
-				
-				// //iterator it = tmp.begin();
-				// while (dis) {
-				// 	push_back(tmp);
-				// 	++it;
-				// }
-				
-				size_type v = n;
 
 				if (n + _size > _capacity)
 				{
@@ -388,8 +355,7 @@ namespace ft
 				}
 				else
 				{
-					int tmp = v;
-					//reverse_iterator r_it = rbegin();
+					int tmp = n;
 					
 					for (iterator it = end(); it >= position; --it)
 					{
@@ -402,7 +368,7 @@ namespace ft
 						position++;
 					}
 				}
-				_size += v;
+				_size += n;
 			}
 
 			template <class InputIterator>
@@ -410,7 +376,6 @@ namespace ft
 							typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0)
 			{
 				size_type n  = std::distance(first, last);
-				size_type v = n;
 
 				if (n + _size > _capacity)
 				{
@@ -440,8 +405,7 @@ namespace ft
 				}
 				else
 				{
-					int tmp = v;
-					//reverse_iterator r_it = rbegin();
+					int tmp = n;
 					
 					for (iterator it = end(); it >= position; --it)
 					{
@@ -454,7 +418,7 @@ namespace ft
 						position++;
 					}
 				}
-				_size += v;
+				_size += n;
 			}
 
 			// ALLOCATOR :
