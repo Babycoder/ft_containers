@@ -35,7 +35,7 @@ namespace ft {
 			iterator& operator++() { _ptr++; return *this; };
 			iterator operator++(int) { iterator tmp = *this; _ptr++; return tmp; };
 
-			iterator& operator--() { Map_ptr--; return *this; };
+			iterator& operator--() { _ptr--; return *this; };
 			iterator operator--(int) { iterator tmp = *this; _ptr--; return tmp; };
 
 			iterator operator+(const difference_type n) const { return  (_ptr + n); };
