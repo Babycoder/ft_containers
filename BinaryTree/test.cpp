@@ -5,13 +5,13 @@ using namespace std;
 struct node
 {
         int data;
+        int height;
+        
         node* left;
         node* right;
-        
-        int height;
 };
 
-class BST
+class AVL
 {
 
 
@@ -33,7 +33,8 @@ class BST
             t = new node;
             t->data = x;
             t->height = 0;
-            t->left = t->right = NULL;
+            t->left = NULL;
+            t->right = NULL;
         }
         else if(x < t->data)
         {
@@ -119,7 +120,7 @@ class BST
             return findMax(t->right);
     }
 
-    node* remove(int x, node* t)
+    /*node* remove(int x, node* t)
     {
         node* temp;
 
@@ -179,7 +180,7 @@ class BST
                 return doubleRightRotate(t);
         }
         return t;
-    }
+    }*/
 
     int height(node* t)
     {
@@ -204,7 +205,7 @@ class BST
     }
 
 public:
-    BST()
+    AVL()
     {
         root = NULL;
     }
@@ -214,10 +215,10 @@ public:
         root = insert(x, root);
     }
 
-    void remove(int x)
+  /*  void remove(int x)
     {
         root = remove(x, root);
-    }
+    }*/
 
     void display()
     {
@@ -228,7 +229,7 @@ public:
 
 int main()
 {
-    BST t;
+    AVL t;
     int array[]={100,55,50,45,47,70,80,78,77,79,82,81,83,150,140,
     135,142,143,180,170,165,160,175,173,200,190,195,500,1000,1500,2000,3000,4000,5000,6000,7000,8000,9000};
 
@@ -237,7 +238,7 @@ int main()
     }
     cout << "insertion done" << endl;
 
-    t.remove(45);
+   /* t.remove(45);
     t.remove(47);
     t.remove(50);
     t.remove(55);
@@ -251,8 +252,8 @@ int main()
     t.remove(83);
     t.remove(100);
     t.remove(135);
-    cout << "Now I remove 140" << endl;
-    t.remove(142);
+    //cout << "Now I remove 140" << endl;
+    t.remove(142);*/
 
     t.display();
 }
