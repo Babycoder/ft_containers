@@ -215,7 +215,7 @@ public:
         root = insert(x, root);
     }
 
-  /*  void remove(int x)
+    /*void remove(int x)
     {
         root = remove(x, root);
     }*/
@@ -225,12 +225,32 @@ public:
         inorder(root);
         cout << endl;
     }
+    node *heead()
+    {
+        return root;
+    }
 };
 
+
+/*int     main()
+{
+    AVL t;
+    
+
+    int array[] = {3, 5 , 7};
+    t.insert(3);
+    t.insert(5);
+    t.insert(7);
+
+    node *root = t.heead();
+    cout << root->data << endl;
+    cout << root->right->data << endl;
+    cout << root->left->data << endl;
+}*/
 int main()
 {
     AVL t;
-    int array[]={100,55,50,45,47,70,80,78,77,79,82,81,83,150,140,
+    int array[]={5, 6, 3, 100,55,50,45,45,47,70,80,78,77,79,82,81,83,150,140,
     135,142,143,180,170,165,160,175,173,200,190,195,500,1000,1500,2000,3000,4000,5000,6000,7000,8000,9000};
 
     for(int i=0;i<38;i++){
@@ -238,7 +258,7 @@ int main()
     }
     cout << "insertion done" << endl;
 
-   /* t.remove(45);
+    /*t.remove(1);
     t.remove(47);
     t.remove(50);
     t.remove(55);
@@ -253,7 +273,7 @@ int main()
     t.remove(100);
     t.remove(135);
     //cout << "Now I remove 140" << endl;
-    t.remove(142);*/
+   // t.remove(142);*/
 
     t.display();
 }
