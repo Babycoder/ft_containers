@@ -1,17 +1,21 @@
-#include "BinaryTree.hpp"
+#include "avltree.hpp"
 
-
+#include <functional>
 
 
 
 
 int main()
 {
-    Node *root = createNode(10);
-    root->left = createNode(5);
 
-    std::cout << root->key << std::endl;
-    std::cout << root->left->key << std::endl;
+   // ft::AVL<value_type, Compare, Alloc> _avl;
+
+    //ft::AVL< ft::pair<const int, char>, std::less<int>, std::allocator<ft::pair<const int, char>>    _tree;
+   
+    //_tree.insert({1, 'a'});
+    //ft::AVL < {'a', 1}, std::less<char, std::allocator<ft::pair<const char,int>> tree;
+
+    
     
     return 0;
 }

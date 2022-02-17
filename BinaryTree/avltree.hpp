@@ -1,7 +1,10 @@
+
 #pragma once
 
 #include <iostream>
-#include <../utils/utility.hpp>
+#include <functional>
+#include "../utils/utility.hpp"
+#include "../utils/algorithm.hpp"
 
 
 
@@ -75,6 +78,7 @@ namespace ft
 				typedef T																	value_type;
 				typedef Alloc																myAllocator;
 				typedef Compare 															key_compare;
+	
 				typename myAllocator::template rebind<AvlNode<value_type, Alloc> >::other	n_alloc; 
 
 				AvlNode<value_type, Alloc>													*root;
@@ -108,7 +112,7 @@ namespace ft
 					return (node->height);
 				}
 
-				// Rotations :
+				//=========================== Rotations ==============================//
 
 				AvlNode<value_type, Alloc> *RightRotate(AvlNode<value_type, Alloc> *z)
 				{
@@ -154,7 +158,88 @@ namespace ft
 					return (node);
 				}
 
+				//========================================== Insert ================================================//:
+				
+				AvlNode<value_type, Alloc>* insert(value_type key)
+				{
+					this->root = this->insert(this->root, key);
+					return (root);
+				}
+				
+				AvlNode<value_type, Alloc> *newNode(value_type const &key)
+				{
+					AvlNode<value_type, Alloc>* node = n_alloc.allocate(1);
+					n_alloc.construct(node, key);
+					return (node);
+				}
+	
+				AvlNode<value_type, Alloc> *rebalance(AvlNode<value_type, Alloc> *node, value_type const &key)
+				{
+					// calculate the balance factor
+					int BalanceFactor = getHeight(node->left) - getHeight(node->right);
+					// bf > 1 && key < node->data->first RightRotae
+					if (BalanceFactor > 1)
+					{
+						if (_cmp(key.first, node->left->data->first))
+							return (RightRotate(node));
+						else
+						{
+							node->left = LeftRotate(node->left);
+							return (RightRotate(node));
+						}
+					}
+					if (BalanceFactor < -1)
+					{
+						if (_cmp(node->right->data->first, key.first))
+							return (LeftRotate(node));
+						else
+						{
+							node->right = RightRotate(node->right);
+							return (LeftRotate(node));
+						}
+					}
+					return (node);
+				}
 
+				AvlNode<value_type, Alloc> *insert(AvlNode<value_type, Alloc> *node, value_type const &key)
+				{
+					if (!node)
+						return (newNode(key));
+					if (_cmp(key.first, node->data->first))
+					{
+						node->left = insert(node->left, key);
+						node->left->parent = node;
+					}
+					else if (_cmp(node->data->first, key.first))
+					{
+						node->right = insert(node->right, key);
+						node->right->parent = node;
+					}
+					else 
+						return (node);
+					
+					node->height = std::max(getHeight(node->left), getHeight(node->right)) + 1;
+					
+					return (rebalance(node, key));
+					//return (node);
+				}
+
+				/**********************************************************************************************/
+
+				void inorder(AvlNode<value_type, Alloc>* root)
+    			{
+        			if(root == NULL)
+            			return;
+        			inorder(root->left);
+        			std::cout << root->data->second << " ";
+        			inorder(root->right);
+    			}
+
+				void display()
+    			{
+        			inorder(root);
+        			std::cout << std::endl;
+    			}
 
 
 			private :
@@ -164,18 +249,6 @@ namespace ft
 
 
 		};
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
