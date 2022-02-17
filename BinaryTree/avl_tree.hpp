@@ -145,8 +145,8 @@ namespace ft
 				{
 					if (!node )
 						return (node);
-						return (node);
 					if (node->data && node->data->first == key.first)
+						return (node);
 					if (_cmp(key.first, node->data->first))
 						return (find(node->left, key));
 					else if (_cmp(node->data->first, key.first))
