@@ -1,9 +1,11 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#include "../utils/bidirectional_iterator.hpp"
 #include "../utils/type_traits.hpp"
 #include "../utils/algorithm.hpp"
 #include "../utils/utility.hpp"
+#include "../utils/reverse_iterator.hpp"
 #include "avltree.hpp"
 
 #include <functional>

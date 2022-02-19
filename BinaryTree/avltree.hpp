@@ -160,10 +160,10 @@ namespace ft
 
 				//========================================== Insert ================================================//:
 				
-				void insert(value_type key)
+				AvlNode<value_type, Alloc>* insert(value_type key)
 				{
 					this->root = this->insert(this->root, key);
-					//return (root);
+					return (root);
 				}
 				
 				AvlNode<value_type, Alloc> *newNode(value_type const &key)
@@ -230,7 +230,57 @@ namespace ft
 				
 				/*************************************** remove ***********************************************/
 
+				bool remove(value_type key)
+				{
+					if (find(root, key))
+					{
+						this->root = this->remove(this->root, key);
+						return (true);
+					}
+					return (false);
+				}
 
+				AvlNode<value_type, Alloc> *remove(AvlNode<value_type, Alloc> *node, value_type const &key)
+				{
+					if (!node)
+						return (node);
+					if (_cmp(key.first, node->data->first))
+						node->left = remove(node->left, key);
+					else if (_cmp(node->data->first, key.first))
+						node->right = remove(node->right, key);
+					
+					else if (node->data->first == key.first)
+					{
+						if (node->left == NULL || node->right == NULL)
+						{
+							AvlNode<value_type, Alloc> *tmp = node->left ? node->left : node->right;
+							if (!tmp)
+							{
+								tmp = node;
+								node = NULL;
+							}
+							else
+							{
+								AvlNode<value_type, Alloc> *new_parent = node->parent;
+								*node = *tmp;
+								node->parent = new_parent;
+							}
+							_alloc.deallocate(tmp->data , 1);
+							n_alloc.deallocate(tmp, 1);
+						}
+						else
+						{
+							AvlNode<value_type, Alloc> *tmp = findMin(node->right);
+							_alloc.construct(node->data, *tmp->data);
+							node->right = remove(node->right, *tmp->data);
+						}
+					}
+					if (!node)
+						return (node);
+					node->height = std::max(getHeight(node->left), getHeight(node->right)) + 1;
+					return (rebalance(node, key));
+
+				}
 
 
 
@@ -239,7 +289,73 @@ namespace ft
 				
 				/************************************** shitty functions *************************************/
 				
+				AvlNode<value_type, Alloc> *findMin(AvlNode<value_type, Alloc> *node) const
+				{
+					if (!node)
+						return (NULL);
+					AvlNode<value_type, Alloc> *min = node;
+					while (min->left)
+						min = min->left;
+					return (min);
+				}
 				
+				AvlNode<value_type, Alloc> *findMax(AvlNode<value_type, Alloc> *node) const
+				{
+					if (!node)
+						return (NULL);
+					AvlNode<value_type, Alloc> *max = node;
+						while (max->right)
+						max = max->right;
+					return (max);
+				}
+				
+				AvlNode<value_type, Alloc> * successor(const value_type &ref) const
+				{
+					AvlNode<value_type, Alloc> *node = find(root, ref);
+					if (!node)
+						return (NULL);
+					if (node->right != NULL)
+						return (findMin(node->right));
+					
+					AvlNode<value_type, Alloc> *succ = node->parent;
+					
+					while (succ != NULL && node == succ->right)
+					{
+						node = succ;
+						succ = succ->parent;
+					}
+					node = succ;
+					return (node);
+				}
+				
+				AvlNode<value_type, Alloc> * predecessor(const value_type &ref) const
+				{
+					AvlNode<value_type, Alloc> *node = find(root, ref);
+					if (!node)
+						return (NULL);
+
+					if (node->left != NULL)
+						return (findMax(node->left));
+					AvlNode<value_type, Alloc> *succ = node->parent;
+					while (succ != NULL && node == succ->left)
+					{
+						node = succ;
+						succ = succ->parent;
+					}
+					node = succ;
+					return (node);
+				}
+
+				void assign(const AvlNode<value_type, Alloc> *node)
+				{
+					if (!node)
+						return ;
+					assign(node->left);
+					if (node->data)
+						insert(*(node->data));
+					assign(node->right);
+				}
+
 				void inorder(AvlNode<value_type, Alloc>* root)
     			{
         			if(root == NULL)
@@ -269,20 +385,4 @@ namespace ft
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
