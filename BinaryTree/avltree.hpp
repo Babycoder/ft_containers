@@ -79,7 +79,7 @@ namespace ft
 				typedef Alloc																myAllocator;
 				typedef Compare 															key_compare;
 	
-				typename myAllocator::template rebind<AvlNode<value_type, Alloc> >::other	n_alloc; 
+				//typename myAllocator::template rebind<AvlNode<value_type, Alloc> >::other	n_alloc; 
 
 				AvlNode<value_type, Alloc>													*root;
 
@@ -365,6 +365,17 @@ namespace ft
         			inorder(root->right);
     			}
 
+				void preorder_clear(AvlNode<value_type, Alloc> *node)
+				{
+					if (node == NULL)
+						return;
+					preorder_clear(node->left);
+					_alloc.deallocate(node->data, 1);
+					preorder_clear(node->right);
+					n_alloc.deallocate(node, 1);
+					node = NULL;
+				}
+
 				void display()
     			{
         			inorder(root);
@@ -376,6 +387,8 @@ namespace ft
 
 				key_compare																	_cmp;
 				myAllocator																	_alloc;
+				typename myAllocator::template rebind<AvlNode<value_type, Alloc> >::other	n_alloc; 
+
 
 		};
 

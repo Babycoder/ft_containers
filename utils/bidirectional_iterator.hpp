@@ -26,7 +26,7 @@ namespace ft {
 
 			operator bidirectional_iterator<const T, Compare, Alloc> () const
 			{
-				return bidirectional_iterator<const T, Compare, Alloc>(_ptr, reinterpret_cast<const AVL<const value_type, Compare, Alloc>*>(_avl));
+				return bidirectional_iterator<const T, Compare, Alloc>(_ptr, _avl);
 			}
 
 			bidirectional_iterator&  operator=(const bidirectional_iterator& it)
@@ -41,11 +41,11 @@ namespace ft {
 				AvlNode<value_type, Alloc> *node = _avl->find(_avl->root, *_ptr);
 				if (node)
 				{
-					AvlNode<value_type, Alloc> *succ = _avl->successor(*_ptr);
-					if (succ)
-						_ptr = succ->data;
-					else
-						_ptr = NULL;
+				AvlNode<value_type, Alloc> *succ = _avl->successor(*_ptr);
+				if (succ)
+					_ptr = succ->data;
+				else
+					_ptr = NULL;
 				}
 				return (*this);
 			}
@@ -99,12 +99,12 @@ namespace ft {
 			}
 			friend bool operator!= (const bidirectional_iterator& lhs, const bidirectional_iterator& rhs)
 			{
-				return (lhs._ptr == rhs._ptr);
+				return (lhs._ptr != rhs._ptr);
 			}
 
 		
 		public :
-			pointer _ptr;
-			const AVL<value_type, Compare, Alloc>* _avl;
+			pointer									_ptr;
+			const AVL<value_type, Compare, Alloc>*	_avl;
 	};
 }
