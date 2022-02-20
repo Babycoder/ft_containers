@@ -374,9 +374,8 @@ namespace ft
 
 			private :
 
-				key_compare _cmp;
-				myAllocator _alloc;
-
+				key_compare																	_cmp;
+				myAllocator																	_alloc;
 
 		};
 
