@@ -5,7 +5,7 @@
 
 #include <vector>
 #include <iostream>
-
+#include  "map/map.hpp"
 #include "vector/vector.hpp"
 
 #include "stack/stack.hpp"
@@ -48,14 +48,29 @@ T max(T a, T b)
 #include "utils/utility.hpp"
 
 int main () {
-  ft::pair <int,int> foo;
-  ft::pair <int,int> bar;
+  ft::map<int, char> m;
 
-  //foo = ft::make_pair (10,20);
-  //bar = ft::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
+  m.insert(ft::make_pair(1, 'a'));
+  m.insert(ft::make_pair(2, 'a'));
+  m.insert(ft::make_pair(3, 'a'));
+  m.insert(ft::make_pair(4, 'a'));
+  m.insert(ft::make_pair(5, 'a'));
 
-  std::cout << "foo: " << ft::make_pair (10,20).second << ", " << foo.second << foo.first << '\n';
-  //std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
+  ft::map<int, char>::iterator it;
+
+
+  for (it = m.begin(); it != m.end(); it++)
+    std::cout << it->first << std::endl;
+
+ /* m.erase(1);
+  m.erase(2);
+  m.erase(3);
+  m.erase(4);
+  m.erase(5);*/
+
+   for (it = m.begin(); it != m.end(); it++)
+    std::cout << it->first << std::endl;
+
 
   return 0;
 }
