@@ -104,7 +104,7 @@ namespace ft {
 			}
 			const_iterator begin() const
 			{
-				return iterator(_avl.findMin(_avl.root) ? _avl.findMin(_avl.root)->data : NULL, &_avl);
+				return iterator(_avl.findMin(_avl.root) ? _avl.findMin(_avl.root)->data : NULL, &_avl); 
 			}
 			iterator end()
 			{
@@ -135,9 +135,9 @@ namespace ft {
 				AvlNode<value_type, Alloc> *node = _avl.find(_avl.root, val);
 				if (!node)
 				{
-					node = _avl.insert(val); // node should remove
 					_size++;
-					return (_avl.find(_avl.root, val)->data->second); // val->second is better;
+					_avl.insert(val);
+					return (_avl.find(_avl.root, val)->data->second);
 				}
 				return (node->data->second);
 			}
