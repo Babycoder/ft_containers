@@ -41,11 +41,11 @@ namespace ft {
 				AvlNode<value_type, Alloc> *node = _avl->find(_avl->root, *_ptr);
 				if (node)
 				{
-				AvlNode<value_type, Alloc> *succ = _avl->successor(*_ptr);
-				if (succ)
-					_ptr = succ->data;
-				else
-					_ptr = NULL;
+					AvlNode<value_type, Alloc> *succ = _avl->successor(*_ptr);
+					if (succ)
+						_ptr = succ->data;
+					else
+						_ptr = NULL;
 				}
 				return (*this);
 			}

@@ -206,9 +206,9 @@ namespace ft {
 			{
 				map tmp;
 
-				tmp.copy_content(*this);
-				this->copy_content(x);
-				x.copy_content(tmp);
+				tmp.swap_content(*this);
+				this->swap_content(x);
+				x.swap_content(tmp);
 				tmp._avl.root = NULL;
 			}
 
