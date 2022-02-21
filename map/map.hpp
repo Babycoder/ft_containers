@@ -243,6 +243,10 @@ namespace ft {
 
 			/************************** Operation methods ****************************/
 
+		    iterator find (const key_type& k)
+			{}
+			const_iterator find (const key_type& k) const
+			{}
 
 
 			/*************************************************************************/

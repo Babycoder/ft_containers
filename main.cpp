@@ -9,7 +9,7 @@
 #include "vector/vector.hpp"
 
 #include "stack/stack.hpp"
-
+#include <map>
 
 
 
@@ -48,15 +48,15 @@ T max(T a, T b)
 #include "utils/utility.hpp"
 
 int main () {
-  ft::map<int, char> m;
+  std::map<int, char> m;
 
-  m.insert(ft::make_pair(1, 'a'));
-  m.insert(ft::make_pair(2, 'a'));
-  m.insert(ft::make_pair(3, 'a'));
-  m.insert(ft::make_pair(4, 'a'));
-  m.insert(ft::make_pair(5, 'a'));
+  m.insert(std::make_pair(1, 'a'));
+  m.insert(std::make_pair(2, 'a'));
+  m.insert(std::make_pair(3, 'a'));
+  m.insert(std::make_pair(4, 'a'));
+  m.insert(std::make_pair(5, 'a'));
 
-  ft::map<int, char>::iterator it;
+  std::map<int, char>::iterator it;
 
 
   for (it = m.begin(); it != m.end(); it++)

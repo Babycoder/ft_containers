@@ -38,11 +38,15 @@ namespace ft {
 
 			bidirectional_iterator& operator++()
 			{
-				AvlNode<value_type, Alloc> *succ = _avl->successor(*_ptr);
-				if (succ)
-					_ptr = succ->data;
-				else
-					_ptr = NULL;
+				AvlNode<value_type, Alloc> *node = _avl->find(_avl->root, *_ptr);
+				if (node)
+				{
+					AvlNode<value_type, Alloc> *succ = _avl->successor(*_ptr);
+					if (succ)
+						_ptr = succ->data;
+					else
+						_ptr = NULL;
+				}
 				return (*this);
 			}
 			
@@ -55,6 +59,7 @@ namespace ft {
 
 			bidirectional_iterator& operator--()
 			{
+				AvlNode<value_type, Alloc> *node = NULL;
 				if (!_ptr)
 				{
 					AvlNode<value_type, Alloc> *node = _avl->findMax(_avl->root);
@@ -62,12 +67,15 @@ namespace ft {
 						_ptr = node->data;
 					return (*this);
 				}
-				
-				AvlNode<value_type, Alloc> *pred = _avl->predecessor(*_ptr);
-				if (pred)
-					_ptr = pred->data;
-				else
-					_ptr = NULL;
+				node = _avl->find(_avl->root, *_ptr);
+				if (node)
+				{				
+					AvlNode<value_type, Alloc> *pred = _avl->predecessor(*_ptr);
+					if (pred)
+						_ptr = pred->data;
+					else
+						_ptr = NULL;
+				}
 				return (*this);
 			}
 
