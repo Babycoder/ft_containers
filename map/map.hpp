@@ -244,10 +244,24 @@ namespace ft {
 			/************************** Operation methods ****************************/
 
 		    iterator find (const key_type& k)
-			{}
+			{
+				AvlNode<value_type, Alloc> *node = _avl.find(_avl.root, ft::make_pair(k, mapped_type()));
+				
+				return iterator(node ? node->data : NULL, &_avl);
+			}
 			const_iterator find (const key_type& k) const
-			{}
+			{
+				AvlNode<value_type, Alloc> *node = _avl.find(_avl.root, ft::make_pair(k, mapped_type()));
 
+				return iterator(node ? node->data : NULL, &_avl);	
+			}
+
+			size_type count (const key_type& k) const
+			{
+				AvlNode<value_type, Alloc> *node = _avl.find(_avl.root, ft::make_pair(k, mapped_type()));
+				
+				return (node ? 1 : 0);
+			}
 
 			/*************************************************************************/
 		
