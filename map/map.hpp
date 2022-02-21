@@ -263,6 +263,90 @@ namespace ft {
 				return (node ? 1 : 0);
 			}
 
+			iterator lower_bound (const key_type& k)
+			{
+				AvlNode<value_type, Alloc> *node = _avl.root;
+				AvlNode<value_type, Alloc> *tmp = node;
+
+				while (node != NULL)
+				{
+					if (!_cmp(node->data->first, k))
+					{
+						tmp = node;
+						break;
+					}
+					else
+						node = node->right;
+				}
+				return(iterator(tmp ? tmp->data : NULL, &_avl));
+			}
+				
+			const_iterator lower_bound (const key_type& k) const
+			{
+				AvlNode<value_type, Alloc> *node = _avl.root;
+				AvlNode<value_type, Alloc> *tmp = node;
+
+				while (node != NULL)
+				{
+					if (!_cmp(node->data->first, k))
+					{
+						tmp = node;
+						break;
+					}
+					else
+						node = node->right;
+				}
+				return(iterator(tmp ? tmp->data : NULL, &_avl));
+			}
+
+			
+			iterator upper_bound (const key_type& k)
+			{
+				AvlNode<value_type, Alloc> *node = _avl.root;
+				AvlNode<value_type, Alloc> *tmp = node;
+
+				while (node != NULL)
+				{
+					if (_cmp(k, node->data->first))
+					{
+						tmp = node;
+						break;
+					}
+					else
+						node = node->right;
+				}
+				return(iterator(tmp ? tmp->data : NULL, &_avl));
+			}
+			
+			const_iterator upper_bound (const key_type& k) const
+			{
+				AvlNode<value_type, Alloc> *node = _avl.root;
+				AvlNode<value_type, Alloc> *tmp = node;
+
+				while (node != NULL)
+				{
+					if (_cmp(k, node->data->first))
+					{
+						tmp = node;
+						break;
+					}
+					else
+						node = node->right;
+				}
+				return(iterator(tmp ? tmp->data : NULL, &_avl));
+			}
+			
+	
+			ft::pair<iterator,iterator>             equal_range (const key_type& k)
+			{
+				return (ft::make_pair(lower_bound(k), upper_bound(k)));
+			}
+			
+			ft::pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			{
+				return (ft::make_pair(lower_bound(k), upper_bound(k)));
+			}
+
 			/*************************************************************************/
 		
 		private :
