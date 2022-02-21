@@ -272,8 +272,11 @@ namespace ft {
 				{
 					if (!_cmp(node->data->first, k))
 					{
+
 						tmp = node;
-						break;
+						if(tmp->data->first == k)
+							break;
+						node = node->left;
 					}
 					else
 						node = node->right;
@@ -291,7 +294,9 @@ namespace ft {
 					if (!_cmp(node->data->first, k))
 					{
 						tmp = node;
-						break;
+						if(tmp->data->first == k)
+							break;
+						node = node->left;
 					}
 					else
 						node = node->right;
@@ -310,7 +315,7 @@ namespace ft {
 					if (_cmp(k, node->data->first))
 					{
 						tmp = node;
-						break;
+						node = node->left;
 					}
 					else
 						node = node->right;
@@ -328,7 +333,7 @@ namespace ft {
 					if (_cmp(k, node->data->first))
 					{
 						tmp = node;
-						break;
+						node = node->left;
 					}
 					else
 						node = node->right;
