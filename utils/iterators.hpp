@@ -50,62 +50,67 @@ namespace ft {
 			
 			reference operator[](difference_type n) const {return *(_ptr + n); }
 
-			template <typename B>
-			friend bool operator== (const iterator<B>& lhs,const iterator<B>& rhs);
+			pointer base() const
+			{
+				return(_ptr);
+			}
+
+			template <typename B, typename A>
+			friend bool operator== (const iterator<B>& lhs,const iterator<A>& rhs);
 			
-			template <typename B>
-			friend bool operator!= (const iterator<B>& lhs, const iterator<B>& rhs);
+			template <typename B, typename A>
+			friend bool operator!= (const iterator<B>& lhs, const iterator<A>& rhs);
 			
-			template <typename B>
-			friend bool operator<(const iterator<B>& lhs,const iterator<B>& rhs);
+			template <typename B, typename A>
+			friend bool operator<(const iterator<B>& lhs,const iterator<A>& rhs);
 			
-			template <typename B>
-			friend bool operator<=(const iterator<B>& lhs,const iterator<B>& rhs);
+			template <typename B, typename A>
+			friend bool operator<=(const iterator<B>& lhs,const iterator<A>& rhs);
 			
-			template <typename B>
-			friend bool operator>(const iterator<B>& lhs,const iterator<B>& rhs);
+			template <typename B, typename A>
+			friend bool operator>(const iterator<B>& lhs,const iterator<A>& rhs);
 			
-			template <typename B>
-			friend bool operator>=(const iterator<B>& lhs,const iterator<B>& rhs);
+			template <typename B, typename A>
+			friend bool operator>=(const iterator<B>& lhs,const iterator<A>& rhs);
 
 		private :
 			pointer _ptr;
 
 	};
 
-	template <typename B>
- 	bool operator== (const iterator<B>& lhs,const iterator<B>& rhs)
+	template <typename B, typename A>
+ 	bool operator== (const iterator<B>& lhs,const iterator<A>& rhs)
 	{
 		return (lhs._ptr == rhs._ptr);
 	}
 	
-	template <typename B>
-  	bool operator!= (const iterator<B>& lhs, const iterator<B>& rhs)
+	template <typename B,typename A>
+  	bool operator!= (const iterator<B>& lhs,const iterator<A>& rhs)
 	{
 		
 		return (lhs._ptr != rhs._ptr);
   	}
 	
-	template <typename B>
-	bool operator<(const iterator<B>& lhs,const iterator<B>& rhs)
+	template <typename B,typename A>
+	bool operator<(const iterator<B>& lhs,const iterator<A>& rhs)
 	{
 		return (lhs._ptr < rhs._ptr);
 	}
 	
-	template <typename B>
-	bool operator<=(const iterator<B>& lhs,const iterator<B>& rhs)
+	template <typename B,typename A>
+	bool operator<=(const iterator<B>& lhs,const iterator<A>& rhs)
 	{
 		return (lhs._ptr <= rhs._ptr);
 	}
 	
-	template <typename B>
-	bool operator>(const iterator<B>& lhs,const iterator<B>& rhs)
+	template <typename B,typename A>
+	bool operator>(const iterator<B>& lhs,const iterator<A>& rhs)
 	{
 		return (lhs._ptr > rhs._ptr);
 	}
 	
-	template <typename B>
-	bool operator>=(const iterator<B>& lhs,const iterator<B>& rhs)
+	template <typename B,typename A>
+	bool operator>=(const iterator<B>& lhs,const iterator<A>& rhs)
 	{
 		return (lhs._ptr >= rhs._ptr);
 	}
