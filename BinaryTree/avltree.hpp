@@ -144,7 +144,7 @@ namespace ft
 
 				AvlNode<value_type, Alloc> *find(AvlNode<value_type, Alloc> *node, const value_type &key) const
 				{
-					if (!node )
+					if (!node)
 						return (node);
 					if (node->data && node->data->first == key.first)
 						return (node);
@@ -284,7 +284,7 @@ namespace ft
 				/**********************************************************************************************/
 				
 				
-				/************************************** shitty functions *************************************/
+				/************************************** utils functions *************************************/
 				
 				AvlNode<value_type, Alloc> *findMin(AvlNode<value_type, Alloc> *node) const
 				{
