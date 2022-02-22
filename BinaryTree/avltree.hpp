@@ -78,9 +78,6 @@ namespace ft
 				typedef T																	value_type;
 				typedef Alloc																myAllocator;
 				typedef Compare 															key_compare;
-	
-				//typename myAllocator::template rebind<AvlNode<value_type, Alloc> >::other	n_alloc; 
-
 				AvlNode<value_type, Alloc>													*root;
 
 

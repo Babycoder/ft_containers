@@ -62,15 +62,15 @@ int main () {
   for (it = m.begin(); it != m.end(); it++)
     std::cout << it->first << std::endl;
 
- /* m.erase(1);
-  m.erase(2);
-  m.erase(3);
-  m.erase(4);
-  m.erase(5);*/
+  // m.erase(1);
+  // m.erase(2);
+  // m.erase(3);
+  // m.erase(4);
+  // m.erase(5);
 
    for (it = m.begin(); it != m.end(); it++)
     std::cout << it->first << std::endl;
 
-
+while(1){}
   return 0;
 }

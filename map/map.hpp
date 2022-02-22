@@ -200,6 +200,7 @@ namespace ft {
 				}
 				for(size_type i = 0; i < tmp.size(); i++)
 					erase(tmp[i]);
+				tmp.clear();
 			}
 
 			void swap (map& x)

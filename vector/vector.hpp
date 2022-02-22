@@ -4,8 +4,6 @@
 
 #include <iostream>
 
-// my headers :
-
 #include "../utils/iterators.hpp"
 #include "../utils/reverse_iterator.hpp"
 #include "../utils/iterators_traits.hpp"
